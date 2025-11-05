@@ -379,6 +379,31 @@ This project uses:
 | `SUPABASE_SERVICE_ROLE_KEY` | ❌ No | For server-side admin ops |
 | `NEXT_PUBLIC_APP_NAME` | ❌ No | App display name |
 
+### Seeding des données de démonstration
+
+Pour remplir Supabase avec 100 clients de test et leurs commandes/paiements :
+
+1. Copiez `.env.local.example` vers `.env.local` et renseignez :
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+2. Installez les dépendances si nécessaire :
+   ```bash
+   npm install
+   ```
+3. Lancez le script de seed :
+   ```bash
+   npm run seed:demo
+   ```
+
+Le script va :
+- Nettoyer les enregistrements précédemment générés (`demo_*`).
+- Créer 100 contacts de démonstration.
+- Générer des commandes multi-statuts (`paid`, `pending_payment`, `refunded`, etc.).
+- Générer les paiements associés (`completed`, `pending`, `failed`, ...).
+
+⚠️ Ce script utilise la clé `SUPABASE_SERVICE_ROLE_KEY`. Gardez-la secrète et ne l'exposez jamais côté client.
+
 ## 📊 Performance
 
 ### Optimization Tips

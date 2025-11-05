@@ -33,7 +33,7 @@ Le code est déjà poussé sur GitHub :
 3. **Configuration :**
    ```
    Framework Preset: Next.js (auto-détecté ✓)
-   Root Directory: ./react-dashboard
+   Root Directory: ./
    Build Command: npm run build (auto ✓)
    Output Directory: .next (auto ✓)
    Install Command: npm install (auto ✓)
@@ -41,15 +41,16 @@ Le code est déjà poussé sur GitHub :
 
 4. **Variables d'Environnement :**
    - Cliquer sur "Environment Variables"
-   - Ajouter ces 2 variables :
+   - Ajouter **pour chaque environnement** (Production, Preview, Development) les variables suivantes avec les valeurs fournies par Supabase :
 
    ```
    NEXT_PUBLIC_SUPABASE_URL
-   Valeur : https://wbjmrkeoeegvbvgffhda.supabase.co
-
    NEXT_PUBLIC_SUPABASE_ANON_KEY
-   Valeur : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indiam1ya2VvZWVndmJ2Z2ZmaGRhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MjI0NzI1OSwiZXhwIjoyMDc3ODIzMjU5fQ.tLBuSoS5eO-LVTLbvMXwWMvSA59CpupLC0ipY2tXA2E
+   SUPABASE_SERVICE_ROLE_KEY  (optionnel mais conseillé pour les scripts ou routes serveur sécurisés)
    ```
+
+   👉 Récupère les valeurs exactes dans ton projet Supabase : `Project Settings → API`.
+   👉 Laisse la case "Encrypt" cochée par défaut dans Vercel pour protéger les clés sensibles.
 
 5. **Déployer :**
    - Cliquer sur "Deploy"
@@ -117,6 +118,22 @@ vercel --prod
 ✓ Payments : https://ton-url.vercel.app/payments
 ✓ Reviews : https://ton-url.vercel.app/reviews
 ```
+
+### 1bis. Vérifier les données de démo
+
+1. **Dans Supabase Studio → Table Editor**
+   - `contacts` : rechercher `demo_user_%` (100 lignes attendues)
+   - `orders` : filtrer `order_number` par `DEMO-%` pour suivre la répartition des statuts
+   - `payments` : filtrer `transaction_id` par `demo-%` pour voir les paiements `completed/pending/failed`
+2. **Dans le dashboard**
+   - `Contacts` : filtres/tri pour visualiser les clients de démo
+   - `Commandes` : vérifier les badges de statuts (payée, en attente, remboursée...)
+   - `Paiements` : comparer la synthèse (cartes en haut) avec les données Supabase
+3. **Échantillons SQL Supabase**
+   ```sql
+   select status, count(*) from orders where order_number like 'DEMO-%' group by status;
+   select payment_status, count(*) from payments where transaction_id like 'demo-%' group by payment_status;
+   ```
 
 ### 2. Vérifier les Features v2.0.0
 
