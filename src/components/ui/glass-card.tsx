@@ -26,6 +26,9 @@ const GlassCard = React.forwardRef<
       }
     : {}
 
+  // Extract all HTML props to avoid conflicts with Framer Motion
+  const { onDragStart, onDragEnd, onDrag, onDragEnter, onDragLeave, onDragOver, onDrop, ...htmlProps } = props
+
   return (
     <motion.div
       ref={ref}
@@ -42,7 +45,7 @@ const GlassCard = React.forwardRef<
         className
       )}
       {...motionProps}
-      {...props}
+      {...htmlProps}
     >
       {children}
     </motion.div>
