@@ -19,16 +19,15 @@ const GlassCard = React.forwardRef<
     taupe: "before:bg-gradient-to-br before:from-primary/20 before:to-transparent",
   }
 
-  const Component = hover ? motion.div : "div"
   const motionProps = hover
     ? {
         whileHover: { y: -4, scale: 1.02 },
-        transition: { type: "spring", stiffness: 300, damping: 20 },
+        transition: { type: "spring" as const, stiffness: 300, damping: 20 },
       }
     : {}
 
   return (
-    <Component
+    <motion.div
       ref={ref}
       className={cn(
         // Base glassmorphism
@@ -46,7 +45,7 @@ const GlassCard = React.forwardRef<
       {...props}
     >
       {children}
-    </Component>
+    </motion.div>
   )
 })
 GlassCard.displayName = "GlassCard"
