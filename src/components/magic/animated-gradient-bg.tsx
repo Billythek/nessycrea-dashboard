@@ -14,14 +14,14 @@ export default function AnimatedGradientBg({
 }: AnimatedGradientBgProps) {
   const gradients = {
     subtle: [
-      "radial-gradient(circle at 20% 30%, rgba(44, 95, 93, 0.08) 0%, transparent 50%)",
-      "radial-gradient(circle at 80% 70%, rgba(212, 197, 169, 0.12) 0%, transparent 50%)",
-      "radial-gradient(circle at 50% 50%, rgba(205, 163, 101, 0.06) 0%, transparent 50%)",
+      "radial-gradient(circle at 20% 30%, rgba(33, 128, 141, 0.08) 0%, transparent 50%)",
+      "radial-gradient(circle at 80% 70%, rgba(94, 82, 64, 0.06) 0%, transparent 50%)",
+      "radial-gradient(circle at 50% 50%, rgba(168, 75, 47, 0.05) 0%, transparent 50%)",
     ],
     vibrant: [
-      "radial-gradient(circle at 20% 30%, rgba(44, 95, 93, 0.15) 0%, transparent 50%)",
-      "radial-gradient(circle at 80% 70%, rgba(212, 197, 169, 0.2) 0%, transparent 50%)",
-      "radial-gradient(circle at 50% 50%, rgba(205, 163, 101, 0.12) 0%, transparent 50%)",
+      "radial-gradient(circle at 20% 30%, rgba(33, 128, 141, 0.15) 0%, transparent 50%)",
+      "radial-gradient(circle at 80% 70%, rgba(94, 82, 64, 0.12) 0%, transparent 50%)",
+      "radial-gradient(circle at 50% 50%, rgba(168, 75, 47, 0.10) 0%, transparent 50%)",
     ],
   }
 

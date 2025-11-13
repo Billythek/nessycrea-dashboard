@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    /* NessyCrea Theme - Teal/Beige/Brown palette */
-    --background: 30 20% 98%;
-    --foreground: 24 15% 26%;
+    /* NessyCrea Theme - Vraies couleurs du site */
+    --background: 60 100% 99%;
+    --foreground: 193 51% 15%;
 
-    --card: 30 25% 96%;
-    --card-foreground: 24 15% 26%;
+    --card: 0 0% 100%;
+    --card-foreground: 193 51% 15%;
 
-    --popover: 30 25% 96%;
-    --popover-foreground: 24 15% 26%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 193 51% 15%;
 
-    --primary: 180 36% 27%;
+    --primary: 188 62% 34%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 38 25% 75%;
-    --secondary-foreground: 24 15% 26%;
+    --secondary: 33 15% 34%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 30 20% 90%;
-    --muted-foreground: 24 10% 45%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 193 7% 41%;
 
-    --accent: 36 43% 60%;
-    --accent-foreground: 24 15% 26%;
+    --accent: 17 56% 42%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 351 83% 42%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 15% 85%;
-    --input: 30 15% 85%;
-    --ring: 180 36% 27%;
+    --border: 0 0% 96%;
+    --input: 0 0% 96%;
+    --ring: 188 62% 34%;
 
     --radius: 0.75rem;
   }
@@ -118,8 +118,8 @@
   /* Styles optimisés pour les graphiques Tremor - NessyCrea palette */
   /* Utilisation de classes spécifiques Tremor uniquement */
   .tremor-AreaChart path {
-    fill: #2C5F5D;
-    stroke: #2C5F5D;
+    fill: #21808D;
+    stroke: #21808D;
     opacity: 0.8;
   }
 
@@ -128,22 +128,22 @@
   }
 
   .tremor-BarChart rect {
-    fill: #2C5F5D;
+    fill: #21808D;
   }
 
   .tremor-BarChart rect:hover {
-    fill: #1A3938;
+    fill: #13343B;
     opacity: 0.9;
   }
 
   /* DonutChart - couleurs NessyCrea harmonisées */
-  .tremor-DonutChart path:nth-of-type(1) { fill: #2C5F5D; }
-  .tremor-DonutChart path:nth-of-type(2) { fill: #CDA365; }
+  .tremor-DonutChart path:nth-of-type(1) { fill: #21808D; }
+  .tremor-DonutChart path:nth-of-type(2) { fill: #A84B2F; }
   .tremor-DonutChart path:nth-of-type(3) { fill: #5E5240; }
-  .tremor-DonutChart path:nth-of-type(4) { fill: #D4C5A9; }
-  .tremor-DonutChart path:nth-of-type(5) { fill: #8B7355; }
-  .tremor-DonutChart path:nth-of-type(6) { fill: #B8884A; }
-  .tremor-DonutChart path:nth-of-type(7) { fill: #1A3938; }
+  .tremor-DonutChart path:nth-of-type(4) { fill: #FCFCF9; }
+  .tremor-DonutChart path:nth-of-type(5) { fill: #13343B; }
+  .tremor-DonutChart path:nth-of-type(6) { fill: #9B8A7A; }
+  .tremor-DonutChart path:nth-of-type(7) { fill: #D4C5A9; }
 
   /* Textes Tremor - styles minimaux pour performance */
   .tremor-ChartContainer svg text,
