@@ -11,11 +11,11 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          teal: '#21808D',
-          brown: '#5E5240',
-          slate: '#13343B',
-          cream: '#FCFCF9',
-          orange: '#A84B2F',
+          teal: 'rgb(33, 128, 141)',      // Teal exact du site
+          brown: 'rgb(107, 83, 68)',       // Brown exact du logo
+          beige: 'rgb(245, 241, 237)',     // Background beige du site
+          cream: 'rgb(252, 252, 249)',     // Cream du site
+          orange: 'rgb(168, 75, 47)',      // Orange du site
         },
         dashboard: {
           // Order status colors (vraies couleurs NessyCrea)

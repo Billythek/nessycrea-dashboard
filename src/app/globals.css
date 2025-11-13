@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    /* NessyCrea Theme - Couleurs exactes du site principal */
-    --background: 60 60% 98%;        /* #FCFCF9 - Cream background */
-    --foreground: 193 51% 15%;       /* #13343B - Slate text */
+    /* NessyCrea Theme - Couleurs EXACTES extraites du site */
+    --background: 32 29% 95%;        /* rgb(245, 241, 237) - Beige clair du site */
+    --foreground: 25 22% 37%;        /* rgb(107, 83, 68) - Brown du logo */
 
-    --card: 60 100% 99%;             /* #FFFFFB - Cream surface */
-    --card-foreground: 193 51% 15%;  /* #13343B - Slate text */
+    --card: 0 0% 100%;               /* Blanc pour les cartes */
+    --card-foreground: 25 22% 37%;   /* Brown text */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 193 51% 15%;
+    --popover-foreground: 25 22% 37%;
 
-    --primary: 188 62% 34%;          /* #21808D - Teal */
-    --primary-foreground: 60 60% 98%;
+    --primary: 188 59% 34%;          /* rgb(33, 128, 141) - Teal du site */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 33 15% 31%;         /* #5E5240 - Brown */
-    --secondary-foreground: 60 60% 98%;
+    --secondary: 25 22% 37%;         /* rgb(107, 83, 68) - Brown */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 96%;               /* #F5F5F5 - Light gray */
-    --muted-foreground: 193 7% 41%;  /* #626C71 - Slate 500 */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 17 56% 42%;            /* #A84B2F - Orange */
-    --accent-foreground: 60 60% 98%;
+    --accent: 17 56% 42%;            /* Orange accent */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 351 83% 42%;      /* #C0152F - Red */
-    --destructive-foreground: 60 60% 98%;
+    --destructive: 351 83% 42%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 33 15% 31% / 0.2;      /* Brown with opacity */
+    --border: 25 22% 37% / 0.15;     /* Brown with low opacity */
     --input: 0 0% 96%;
-    --ring: 188 62% 34%;             /* Teal focus ring */
+    --ring: 188 59% 34%;
 
     --radius: 0.75rem;
   }
@@ -56,10 +56,10 @@
 @layer components {
   /* NessyCrea glassmorphism - Light theme */
   .glass-card {
-    background: rgba(252, 252, 249, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(94, 82, 64, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(94, 82, 64, 0.08);
+    border: 1px solid rgba(107, 83, 68, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(107, 83, 68, 0.06);
   }
 
   /* Subtle text accent */
@@ -75,13 +75,13 @@
   .card-hover:hover {
     transform: translateY(-2px);
     border-color: rgba(33, 128, 141, 0.3);
-    box-shadow: 0 12px 24px rgba(33, 128, 141, 0.12);
+    box-shadow: 0 12px 24px rgba(33, 128, 141, 0.1);
   }
 
-  /* Single accent background - Brown/Teal */
+  /* Single accent background - Brown */
   .bg-accent-subtle {
-    background: rgba(94, 82, 64, 0.12);
-    border: 1px solid rgba(94, 82, 64, 0.2);
+    background: rgba(107, 83, 68, 0.08);
+    border: 1px solid rgba(107, 83, 68, 0.15);
   }
 
   /* Animation de slide-in */
