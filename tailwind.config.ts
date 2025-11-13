@@ -11,33 +11,34 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          pink: '#E8C4D8',
-          cream: '#FFF5E6',
-          brown: '#8B7355',
-          mint: '#A8D5BA',
+          teal: '#2C5F5D',
+          beige: '#D4C5A9',
+          brown: '#5E5240',
+          cream: '#FAF8F3',
+          gold: '#CDA365',
         },
         dashboard: {
-          // Order status colors (high-contrast for black bg)
-          delivered: '#4BFF36',
-          shipped: '#1ECDE6',
-          processing: '#5E57FF',
-          pending: '#FF9535',
-          cancelled: '#F23CA6',
-          failed: '#FF004D',
+          // Order status colors (NessyCrea palette)
+          delivered: '#059669',
+          shipped: '#2C5F5D',
+          processing: '#CDA365',
+          pending: '#D97706',
+          cancelled: '#DC2626',
+          failed: '#DC2626',
 
-          // Chart colors
-          revenue: '#1ECDE6',
-          grid: '#2A2A2A',
+          // Chart colors - NessyCrea theme
+          revenue: '#2C5F5D',
+          grid: '#E7E5E4',
 
           // Product colors
-          stockHigh: '#4BFF36',
-          stockMedium: '#FF9535',
-          stockLow: '#FF004D',
+          stockHigh: '#059669',
+          stockMedium: '#D97706',
+          stockLow: '#DC2626',
 
           // Trend colors
-          up: '#4BFF36',
-          down: '#FF004D',
-          neutral: '#9CA3AF',
+          up: '#059669',
+          down: '#DC2626',
+          neutral: '#78716C',
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

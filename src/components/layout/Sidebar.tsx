@@ -96,7 +96,7 @@ export function Sidebar() {
       {/* Sidebar */}
       <aside
         className={cn(
-          'fixed top-0 left-0 z-40 h-screen w-64 bg-black/40 backdrop-blur-xl border-r border-white/10 shadow-2xl transition-transform lg:translate-x-0',
+          'fixed top-0 left-0 z-40 h-screen w-64 bg-card/95 backdrop-blur-xl border-r border-border shadow-2xl transition-transform lg:translate-x-0',
           isOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
@@ -126,7 +126,7 @@ export function Sidebar() {
                     'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 group',
                     isActive
                       ? 'bg-primary/10 text-primary border border-primary/20'
-                      : 'text-muted-foreground hover:bg-white/5 hover:text-foreground border border-transparent'
+                      : 'text-muted-foreground hover:bg-secondary/50 hover:text-foreground border border-transparent'
                   )}
                 >
                   <Icon className="h-5 w-5" />
@@ -150,7 +150,7 @@ export function Sidebar() {
                 'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 border',
                 pathname === '/settings'
                   ? 'bg-primary/10 text-primary border-primary/20'
-                  : 'text-muted-foreground hover:bg-white/5 hover:text-foreground border-transparent'
+                  : 'text-muted-foreground hover:bg-secondary/50 hover:text-foreground border-transparent'
               )}
             >
               <Settings className="h-5 w-5" />
@@ -159,8 +159,8 @@ export function Sidebar() {
           </nav>
 
           {/* Footer */}
-          <div className="border-t border-white/10 p-4">
-            <div className="flex items-center gap-3 rounded-lg bg-white/5 p-3 border border-white/10">
+          <div className="border-t border-border p-4">
+            <div className="flex items-center gap-3 rounded-lg bg-secondary/30 p-3 border border-border">
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-medium">
                 NC
               </div>

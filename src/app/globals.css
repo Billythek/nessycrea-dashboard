@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    /* Dark theme - nextjs.org inspired */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
+    /* NessyCrea Theme - Teal/Beige/Brown palette */
+    --background: 30 20% 98%;
+    --foreground: 24 15% 26%;
 
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 98%;
+    --card: 30 25% 96%;
+    --card-foreground: 24 15% 26%;
 
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 30 25% 96%;
+    --popover-foreground: 24 15% 26%;
 
-    --primary: 330 75% 65%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 180 36% 27%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 38 25% 75%;
+    --secondary-foreground: 24 15% 26%;
 
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 30 20% 90%;
+    --muted-foreground: 24 10% 45%;
 
-    --accent: 330 75% 65%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 36 43% 60%;
+    --accent-foreground: 24 15% 26%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 330 75% 65%;
+    --border: 30 15% 85%;
+    --input: 30 15% 85%;
+    --ring: 180 36% 27%;
 
     --radius: 0.75rem;
   }
@@ -54,12 +54,12 @@
 }
 
 @layer components {
-  /* Dark glassmorphism */
+  /* NessyCrea glassmorphism - Light theme */
   .glass-card {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(250, 248, 243, 0.95);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(212, 197, 169, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(94, 82, 64, 0.08);
   }
 
   /* Subtle text accent */
@@ -67,21 +67,21 @@
     color: hsl(var(--foreground));
   }
 
-  /* Subtle hover effect */
+  /* Subtle hover effect - NessyCrea colors */
   .card-hover {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card-hover:hover {
     transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    border-color: rgba(44, 95, 93, 0.3);
+    box-shadow: 0 12px 24px rgba(44, 95, 93, 0.12);
   }
 
-  /* Single accent background */
+  /* Single accent background - Beige/Teal */
   .bg-accent-subtle {
-    background: rgba(236, 99, 172, 0.1);
-    border: 1px solid rgba(236, 99, 172, 0.2);
+    background: rgba(212, 197, 169, 0.15);
+    border: 1px solid rgba(212, 197, 169, 0.3);
   }
 
   /* Animation de slide-in */
@@ -115,35 +115,35 @@
     box-shadow: 0 0 20px rgba(236, 99, 172, 0.2);
   }
 
-  /* Styles optimis?s pour les graphiques Tremor - performance am?lior?e */
-  /* Utilisation de classes sp?cifiques Tremor uniquement */
+  /* Styles optimisés pour les graphiques Tremor - NessyCrea palette */
+  /* Utilisation de classes spécifiques Tremor uniquement */
   .tremor-AreaChart path {
-    fill: #FFD700;
-    stroke: #FFD700;
+    fill: #2C5F5D;
+    stroke: #2C5F5D;
     opacity: 0.8;
   }
-  
+
   .tremor-AreaChart path:hover {
     opacity: 1;
   }
 
   .tremor-BarChart rect {
-    fill: #E8C4D8;
+    fill: #2C5F5D;
   }
-  
+
   .tremor-BarChart rect:hover {
-    fill: #FFB6C1;
+    fill: #1A3938;
     opacity: 0.9;
   }
 
-  /* DonutChart - couleurs NessyCrea */
-  .tremor-DonutChart path:nth-of-type(1) { fill: #E8C4D8; }
-  .tremor-DonutChart path:nth-of-type(2) { fill: #FFD700; }
-  .tremor-DonutChart path:nth-of-type(3) { fill: #A8D5BA; }
-  .tremor-DonutChart path:nth-of-type(4) { fill: #FFB6C1; }
+  /* DonutChart - couleurs NessyCrea harmonisées */
+  .tremor-DonutChart path:nth-of-type(1) { fill: #2C5F5D; }
+  .tremor-DonutChart path:nth-of-type(2) { fill: #CDA365; }
+  .tremor-DonutChart path:nth-of-type(3) { fill: #5E5240; }
+  .tremor-DonutChart path:nth-of-type(4) { fill: #D4C5A9; }
   .tremor-DonutChart path:nth-of-type(5) { fill: #8B7355; }
-  .tremor-DonutChart path:nth-of-type(6) { fill: #FFF5E6; }
-  .tremor-DonutChart path:nth-of-type(7) { fill: #FFC0CB; }
+  .tremor-DonutChart path:nth-of-type(6) { fill: #B8884A; }
+  .tremor-DonutChart path:nth-of-type(7) { fill: #1A3938; }
 
   /* Textes Tremor - styles minimaux pour performance */
   .tremor-ChartContainer svg text,

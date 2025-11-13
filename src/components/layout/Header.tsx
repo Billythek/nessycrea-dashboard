@@ -18,7 +18,7 @@ export function Header() {
   const notificationsCount = 3
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-white/10 bg-black/40 backdrop-blur-xl px-6">
+    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-border bg-card/80 backdrop-blur-xl px-6">
       {/* Espace pour le bouton mobile (géré par Sidebar) */}
       <div className="lg:hidden w-10" />
 
@@ -34,7 +34,7 @@ export function Header() {
           variant="outline"
           size="sm"
           asChild
-          className="hidden md:flex gap-2 border-white/10 hover:bg-white/5"
+          className="hidden md:flex gap-2"
         >
           <a href="http://localhost:8000" target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
