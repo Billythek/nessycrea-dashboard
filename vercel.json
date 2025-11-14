@@ -1,6 +1,13 @@
 {
+  "framework": "nextjs",
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "framework": "nextjs",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "https://placeholder.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "placeholder-key",
+    "SUPABASE_SERVICE_ROLE_KEY": "placeholder-service-key",
+    "NEXT_PUBLIC_APP_NAME": "NessyCrea Dashboard",
+    "NEXT_PUBLIC_APP_URL": "https://nessycrea-dashboard.vercel.app"
+  }
 }

@@ -79,7 +79,7 @@ export default function ContactsPage() {
       if (error) throw error
 
       const contactsWithStats = await Promise.all(
-        (contactsData || []).map(async (contact) => {
+        (contactsData || []).map(async (contact: any) => {
           const { data: orders } = await supabase
             .from('orders')
             .select('total_amount')
@@ -87,7 +87,7 @@ export default function ContactsPage() {
             .in('status', ['paid', 'processing', 'shipped', 'delivered'])
 
           const totalOrders = orders?.length || 0
-          const totalSpent = orders?.reduce((sum, order) => sum + Number(order.total_amount), 0) || 0
+          const totalSpent = orders?.reduce((sum: number, order: any) => sum + Number(order.total_amount), 0) || 0
 
           return {
             ...contact,
