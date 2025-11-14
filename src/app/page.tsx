@@ -1,6 +1,4 @@
-import { redirect } from 'next/navigation'
-
 export default function Home() {
-  // Redirect to the static site
-  redirect('/site/')
+  // Serve the site directly at root via middleware rewrite
+  return null
 }
