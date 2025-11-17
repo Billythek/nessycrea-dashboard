@@ -1,0 +1,410 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TYPOGRAPHIE DISTINCTIVE - Artisanal Luxe */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@layer base {
+  :root {
+    /* NessyCrea - ARTISANAL LUXE PALETTE */
+    /* Inspiré terracotta mais raffiné et distinctif */
+
+    --background: 38 25% 97%;        /* Crème chaude */
+    --foreground: 20 25% 20%;        /* Espresso profond */
+
+    --card: 40 20% 99%;              /* Blanc cassé */
+    --card-foreground: 20 25% 20%;
+
+    --popover: 40 20% 99%;
+    --popover-foreground: 20 25% 20%;
+
+    --primary: 16 65% 45%;           /* Terracotta riche */
+    --primary-foreground: 40 20% 99%;
+
+    --secondary: 35 30% 88%;         /* Sable doux */
+    --secondary-foreground: 20 25% 20%;
+
+    --muted: 38 15% 94%;             /* Gris chaud */
+    --muted-foreground: 20 15% 45%;
+
+    --accent: 28 80% 52%;            /* Cuivre lumineux */
+    --accent-foreground: 40 20% 99%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 20% 85%;
+    --input: 38 15% 94%;
+    --ring: 16 65% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom NessyCrea */
+    --nc-terracotta: 16 65% 45%;
+    --nc-espresso: 20 25% 20%;
+    --nc-cream: 38 25% 97%;
+    --nc-copper: 28 80% 52%;
+    --nc-blush: 15 40% 90%;
+    --nc-sage: 140 20% 75%;
+  }
+
+  .dark {
+    --background: 20 15% 10%;
+    --foreground: 38 20% 92%;
+
+    --card: 20 12% 14%;
+    --card-foreground: 38 20% 92%;
+
+    --popover: 20 12% 14%;
+    --popover-foreground: 38 20% 92%;
+
+    --primary: 28 80% 58%;
+    --primary-foreground: 20 15% 10%;
+
+    --secondary: 20 10% 22%;
+    --secondary-foreground: 38 20% 92%;
+
+    --muted: 20 10% 22%;
+    --muted-foreground: 38 15% 65%;
+
+    --accent: 16 65% 55%;
+    --accent-foreground: 20 15% 10%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 20 10% 25%;
+    --input: 20 10% 22%;
+    --ring: 28 80% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    min-height: 100vh;
+    letter-spacing: -0.01em;
+  }
+
+  /* Typographie distinctive */
+  h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    line-height: 1.1;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl;
+    line-height: 1.2;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+    line-height: 1.3;
+  }
+}
+
+@layer components {
+  /* CARDS - Style Artisanal Luxe */
+  .card-artisan {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-artisan::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+      hsl(var(--nc-terracotta)) 0%,
+      hsl(var(--nc-copper)) 50%,
+      hsl(var(--nc-terracotta)) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .card-artisan:hover::before {
+    opacity: 1;
+  }
+
+  .card-artisan:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 4px 6px -1px rgba(139, 69, 19, 0.05),
+      0 10px 15px -3px rgba(139, 69, 19, 0.08);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* STAT CARD - Hiérarchie forte */
+  .stat-card {
+    @apply card-artisan p-6;
+  }
+
+  .stat-value {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: hsl(var(--nc-espresso));
+    letter-spacing: -0.03em;
+  }
+
+  .stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 0.5rem;
+  }
+
+  /* ACCENT BADGE - Cuivre */
+  .badge-copper {
+    background: hsl(var(--nc-copper) / 0.12);
+    color: hsl(var(--nc-copper));
+    border: 1px solid hsl(var(--nc-copper) / 0.2);
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  /* TEXTURE SUBTILE - Grain artisanal */
+  .texture-grain {
+    position: relative;
+  }
+
+  .texture-grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.015;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  /* ANIMATIONS RAFFINÉES */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  /* Staggered animation delays */
+  .stagger-1 { animation-delay: 0.1s; opacity: 0; }
+  .stagger-2 { animation-delay: 0.2s; opacity: 0; }
+  .stagger-3 { animation-delay: 0.3s; opacity: 0; }
+  .stagger-4 { animation-delay: 0.4s; opacity: 0; }
+  .stagger-5 { animation-delay: 0.5s; opacity: 0; }
+
+  /* PROGRESS BAR - Style terracotta */
+  .progress-terracotta {
+    height: 4px;
+    background: hsl(var(--nc-terracotta) / 0.15);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .progress-terracotta-fill {
+    height: 100%;
+    background: linear-gradient(90deg,
+      hsl(var(--nc-terracotta)),
+      hsl(var(--nc-copper)));
+    border-radius: 100px;
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* DIVIDER - Ligne artisanale */
+  .divider-artisan {
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent,
+      hsl(var(--border)),
+      transparent);
+  }
+
+  /* ICON CONTAINER */
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    background: hsl(var(--nc-terracotta) / 0.08);
+    color: hsl(var(--nc-terracotta));
+    transition: all 0.3s ease;
+  }
+
+  .icon-container:hover {
+    background: hsl(var(--nc-terracotta) / 0.15);
+    transform: rotate(-5deg);
+  }
+
+  /* Legacy support */
+  .card-hover {
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-1px);
+  }
+
+  .animate-slide-in {
+    animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .gradient-text {
+    color: hsl(var(--foreground));
+  }
+
+  .glass-card {
+    @apply card-artisan;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Touch-friendly interactions */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  /* Safe area for mobile */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Subtle dark shadows */
+  .shadow-subtle {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(236, 99, 172, 0.2);
+  }
+
+  /* Bounce animation for celebrations */
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 1s ease-in-out infinite;
+  }
+
+  /* Pulse ring for notifications */
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  .pulse-ring::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid currentColor;
+    border-radius: inherit;
+    animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Styles optimisés pour les graphiques Tremor - Palette beige/orange/marron */
+  /* Utilisation de classes spécifiques Tremor uniquement */
+  .tremor-AreaChart path {
+    fill: rgba(168, 75, 47, 1);
+    stroke: rgba(168, 75, 47, 1);
+    opacity: 0.8;
+  }
+
+  .tremor-AreaChart path:hover {
+    opacity: 1;
+  }
+
+  .tremor-BarChart rect {
+    fill: rgba(168, 75, 47, 1);
+  }
+
+  .tremor-BarChart rect:hover {
+    fill: rgba(107, 83, 68, 1);
+    opacity: 0.9;
+  }
+
+  /* DonutChart - couleurs chaudes harmonisées */
+  .tremor-DonutChart path:nth-of-type(1) { fill: rgba(168, 75, 47, 1); }
+  .tremor-DonutChart path:nth-of-type(2) { fill: rgba(107, 83, 68, 1); }
+  .tremor-DonutChart path:nth-of-type(3) { fill: rgba(230, 129, 97, 1); }
+  .tremor-DonutChart path:nth-of-type(4) { fill: rgba(94, 82, 64, 1); }
+  .tremor-DonutChart path:nth-of-type(5) { fill: rgba(192, 138, 122, 1); }
+  .tremor-DonutChart path:nth-of-type(6) { fill: rgba(155, 138, 122, 1); }
+  .tremor-DonutChart path:nth-of-type(7) { fill: rgba(212, 197, 169, 1); }
+
+  /* Textes Tremor - styles minimaux pour performance */
+  .tremor-ChartContainer svg text,
+  .tremor-ChartArea svg text,
+  .tremor-Axis text {
+    fill: hsl(var(--foreground));
+  }
+}

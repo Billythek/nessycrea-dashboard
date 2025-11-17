@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - NessyCrea</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --admin-sidebar-width: 280px;
+            --admin-header-height: 80px;
+
+            /* Couleurs sophistiquées */
+            --primary-50: #F0F4F4;
+            --primary-100: #D9E5E4;
+            --primary-200: #B3CBCA;
+            --primary-300: #8DB1AF;
+            --primary-400: #5E8F8C;
+            --primary-500: #2C5F5D;
+            --primary-600: #234C4A;
+            --primary-700: #1A3938;
+            --primary-800: #122625;
+            --primary-900: #091312;
+
+            --neutral-50: #FAFAF9;
+            --neutral-100: #F5F5F4;
+            --neutral-200: #E7E5E4;
+            --neutral-300: #D6D3D1;
+            --neutral-400: #A8A29E;
+            --neutral-500: #78716C;
+            --neutral-600: #57534E;
+            --neutral-700: #44403C;
+            --neutral-800: #292524;
+            --neutral-900: #1C1917;
+
+            --accent-beige: #D4C5A9;
+            --accent-gold: #CDA365;
+            --accent-cream: #FAF8F3;
+            --accent-brown: #5E5240;
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #2C5F5D 0%, #1A3938 100%);
+            --gradient-gold: linear-gradient(135deg, #CDA365 0%, #B8884A 100%);
+            --gradient-neutral: linear-gradient(135deg, #F5F5F4 0%, #E7E5E4 100%);
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-glass: 0 8px 32px 0 rgba(44, 95, 93, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--neutral-50);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* =================
+           LOGIN PAGE - ULTRA SOPHISTIQUÉ
+        ================= */
+        .admin-login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2C5F5D 0%, #1A3938 50%, #122625 100%);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background Elements */
+        .admin-login-page::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(205, 163, 101, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .admin-login-page::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 197, 169, 0.1) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        .admin-login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            box-shadow: var(--shadow-2xl);
+            max-width: 480px;
+            width: 100%;
+            padding: 56px 48px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .admin-login-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .admin-login-logo {
+            font-size: 72px;
+            margin-bottom: 24px;
+            display: inline-block;
+            animation: logoFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 12px rgba(44, 95, 93, 0.3));
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .admin-login-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .admin-login-subtitle {
+            color: var(--neutral-600);
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .admin-form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .admin-form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--neutral-700);
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: -0.01em;
+            transition: color 0.3s ease;
+        }
+
+        .admin-form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--neutral-200);
+            border-radius: 16px;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            background: white;
+            color: var(--neutral-900);
+        }
+
+        .admin-form-input:hover {
+            border-color: var(--neutral-300);
+        }
+
+        .admin-form-input:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 4px rgba(44, 95, 93, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .admin-form-input:focus + .admin-form-label {
+            color: var(--primary-500);
+        }
+
+        .admin-btn-login {
+            width: 100%;
+            padding: 18px 32px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 32px;
+            box-shadow: 0 8px 24px rgba(44, 95, 93, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.02em;
+        }
+
+        .admin-btn-login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .admin-btn-login:hover::before {
+            left: 100%;
+        }
+
+        .admin-btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(44, 95, 93, 0.4);
+        }
+
+        .admin-btn-login:active {
+            transform: translateY(-1px);
+        }
+
+        .admin-credentials-box {
+            margin-top: 32px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--accent-cream) 0%, var(--neutral-100) 100%);
+            border-radius: 16px;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .admin-credentials-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--neutral-600);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .admin-credentials-item {
+            font-size: 14px;
+            color: var(--neutral-700);
+            margin: 6px 0;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+        }
+
+        /* =================
+           DASHBOARD - DESIGN SOPHISTIQUÉ
+        ================= */
+        .admin-dashboard {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .admin-dashboard.active {
+            display: flex;
+        }
+
+        /* Sidebar Ultra Moderne */
+        .admin-sidebar {
+            width: var(--admin-sidebar-width);
+            background: linear-gradient(180deg, #1A3938 0%, #122625 100%);
+            min-height: 100vh;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            left: 0;
+            top: 0;
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .admin-sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-sidebar-logo-icon {
+            font-size: 40px;
+            filter: drop-shadow(0 2px 8px rgba(205, 163, 101, 0.4));
+        }
+
+        .admin-sidebar-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+
+        .admin-nav {
+            list-style: none;
+            flex: 1;
+        }
+
+        .admin-nav-item {
+            margin-bottom: 8px;
+        }
+
+        .admin-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 20px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--accent-gold);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .admin-nav-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .admin-nav-link.active {
+            background: rgba(205, 163, 101, 0.15);
+            color: white;
+            box-shadow: 0 4px 12px rgba(205, 163, 101, 0.2);
+        }
+
+        .admin-nav-link.active::before {
+            transform: scaleY(1);
+        }
+
+        .admin-nav-icon {
+            font-size: 20px;
+            width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-nav-text {
+            letter-spacing: -0.01em;
+        }
+
+        .admin-sidebar-footer {
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-user-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .admin-user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--gradient-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(205, 163, 101, 0.3);
+        }
+
+        .admin-user-info {
+            flex: 1;
+        }
+
+        .admin-user-name {
+            font-weight: 600;
+            color: white;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .admin-user-email {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .admin-btn-logout {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .admin-btn-logout:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Area */
+        .admin-main {
+            margin-left: var(--admin-sidebar-width);
+            min-height: 100vh;
+            background: var(--neutral-50);
+        }
+
+        .admin-header {
+            height: var(--admin-header-height);
+            padding: 0 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-bottom: 1px solid var(--neutral-200);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .admin-header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            letter-spacing: -0.02em;
+        }
+
+        .admin-btn-back {
+            padding: 12px 24px;
+            background: white;
+            color: var(--primary-600);
+            border: 2px solid var(--primary-200);
+            border-radius: 12px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .admin-btn-back:hover {
+            background: var(--primary-50);
+            border-color: var(--primary-400);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .admin-content {
+            padding: 48px;
+        }
+
+        /* Stats Cards - Design Sophistiqué avec Glassmorphism */
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .admin-stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(44, 95, 93, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(40px, -40px);
+        }
+
+        .admin-stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-300);
+        }
+
+        .admin-stat-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .admin-stat-value {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--neutral-900);
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+        }
+
+        .admin-stat-label {
+            font-size: 15px;
+            color: var(--neutral-600);
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .admin-stat-trend {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .admin-stat-trend.positive {
+            color: #059669;
+            background: #D1FAE5;
+        }
+
+        .admin-stat-trend.negative {
+            color: #DC2626;
+            background: #FEE2E2;
+        }
+
+        .admin-stat-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .admin-stat-icon.teal {
+            background: linear-gradient(135deg, #2C5F5D 0%, #1A3938 100%);
+        }
+
+        .admin-stat-icon.gold {
+            background: var(--gradient-gold);
+        }
+
+        .admin-stat-icon.brown {
+            background: linear-gradient(135deg, #5E5240 0%, #44403C 100%);
+        }
+
+        .admin-stat-icon.beige {
+            background: linear-gradient(135deg, #D4C5A9 0%, #C4B299 100%);
+        }
+
+        /* Dashboard Grid Layout */
+        .admin-dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 32px;
+        }
+
+        /* Section Cards */
+        .admin-section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s ease;
+            margin-bottom: 32px;
+        }
+
+        .admin-section-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .admin-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+
+        .admin-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--neutral-900);
+            letter-spacing: -0.02em;
+        }
+
+        .admin-link-small {
+            color: var(--primary-600);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .admin-link-small:hover {
+            color: var(--primary-700);
+            transform: translateX(4px);
+        }
+
+        /* Orders List - Design Avancé */
+        .admin-orders-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .admin-order-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: var(--gradient-neutral);
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .admin-order-item:hover {
+            background: white;
+            border-color: var(--primary-200);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .admin-order-info {
+            flex: 1;
+        }
+
+        .admin-order-id {
+            font-weight: 700;
+            color: var(--neutral-900);
+            font-size: 15px;
+            margin-bottom: 6px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+        }
+
+        .admin-order-customer {
+            font-size: 14px;
+            color: var(--neutral-600);
+            font-weight: 500;
+        }
+
+        .admin-order-details {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .admin-order-amount {
+            font-weight: 700;
+            color: var(--primary-600);
+            font-size: 18px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+        }
+
+        .admin-badge {
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .admin-badge.success {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        .admin-badge.warning {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .admin-badge.info {
+            background: #DBEAFE;
+            color: #2563EB;
+        }
+
+        /* Products List */
+        .admin-products-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .admin-product-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: var(--gradient-neutral);
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .admin-product-item:hover {
+            background: white;
+            border-color: var(--accent-gold);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .admin-product-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .admin-product-emoji {
+            font-size: 32px;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .admin-product-name {
+            font-weight: 600;
+            color: var(--neutral-900);
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .admin-product-sales {
+            font-size: 13px;
+            color: var(--neutral-600);
+        }
+
+        .admin-product-revenue {
+            font-weight: 800;
+            color: var(--accent-gold);
+            font-size: 20px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+        }
+
+        /* Chart Select */
+        .admin-select-period {
+            padding: 10px 18px;
+            border: 2px solid var(--neutral-200);
+            border-radius: 12px;
+            background: white;
+            color: var(--neutral-700);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .admin-select-period:hover {
+            border-color: var(--primary-400);
+        }
+
+        .admin-select-period:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 4px rgba(44, 95, 93, 0.1);
+        }
+
+        /* Category Legend */
+        .admin-category-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .admin-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .admin-legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .admin-legend-label {
+            font-size: 15px;
+            color: var(--neutral-700);
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .admin-legend-value {
+            font-weight: 700;
+            color: var(--primary-600);
+            font-size: 16px;
+        }
+
+        /* Messages List */
+        .admin-messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .admin-message-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            border-radius: 14px;
+            background: var(--gradient-neutral);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .admin-message-item:hover {
+            background: white;
+            border-color: var(--primary-200);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .admin-message-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .admin-message-content {
+            flex: 1;
+        }
+
+        .admin-message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .admin-message-header strong {
+            color: var(--neutral-900);
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .admin-message-time {
+            font-size: 13px;
+            color: var(--neutral-500);
+            font-weight: 500;
+        }
+
+        .admin-message-text {
+            color: var(--neutral-700);
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            .admin-dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            :root {
+                --admin-sidebar-width: 80px;
+            }
+
+            .admin-sidebar-logo-text,
+            .admin-nav-text,
+            .admin-user-info,
+            .admin-btn-logout span {
+                display: none;
+            }
+
+            .admin-sidebar {
+                padding: 24px 16px;
+            }
+
+            .admin-nav-link {
+                justify-content: center;
+                padding: 14px;
+            }
+
+            .admin-user-card {
+                justify-content: center;
+            }
+
+            .admin-content {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --admin-sidebar-width: 0px;
+            }
+
+            .admin-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .admin-header {
+                padding: 0 24px;
+            }
+
+            .admin-content {
+                padding: 24px;
+            }
+
+            .admin-stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-order-item,
+            .admin-product-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div class="admin-login-page" id="loginPage">
+        <div class="admin-login-container">
+            <div class="admin-login-header">
+                <div class="admin-login-logo">🕯️</div>
+                <h1 class="admin-login-title">Dashboard Admin</h1>
+                <p class="admin-login-subtitle">Bienvenue sur votre espace d'administration NessyCrea</p>
+            </div>
+
+            <form id="adminLoginForm">
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="adminEmail">Adresse email</label>
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        class="admin-form-input"
+                        placeholder="admin@nessycrea.fr"
+                        value="admin@nessycrea.fr"
+                        required>
+                </div>
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="adminPassword">Mot de passe</label>
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        class="admin-form-input"
+                        placeholder="••••••••"
+                        value="admin123"
+                        required>
+                </div>
+
+                <button type="submit" class="admin-btn-login">
+                    Se connecter au Dashboard
+                </button>
+            </form>
+
+            <div class="admin-credentials-box">
+                <div class="admin-credentials-title">🔐 Accès Démo</div>
+                <div class="admin-credentials-item"><strong>Email:</strong> admin@nessycrea.fr</div>
+                <div class="admin-credentials-item"><strong>Mot de passe:</strong> admin123</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="admin-dashboard" id="adminDashboard">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-logo">
+                <span class="admin-sidebar-logo-icon">🕯️</span>
+                <span class="admin-sidebar-logo-text">NessyCrea</span>
+            </div>
+
+            <nav>
+                <ul class="admin-nav">
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link active">
+                            <span class="admin-nav-icon">📊</span>
+                            <span class="admin-nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">🛍️</span>
+                            <span class="admin-nav-text">Produits</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">📦</span>
+                            <span class="admin-nav-text">Commandes</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">👥</span>
+                            <span class="admin-nav-text">Clients</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">💬</span>
+                            <span class="admin-nav-text">Messages</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">📈</span>
+                            <span class="admin-nav-text">Analytics</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">⚙️</span>
+                            <span class="admin-nav-text">Paramètres</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <div class="admin-user-card">
+                    <div class="admin-user-avatar">VC</div>
+                    <div class="admin-user-info">
+                        <div class="admin-user-name">Vanessa</div>
+                        <div class="admin-user-email">admin@nessycrea.fr</div>
+                    </div>
+                </div>
+                <button class="admin-btn-logout" onclick="logoutAdmin()">
+                    <span>🚪</span>
+                    <span>Déconnexion</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1 class="admin-header-title">Tableau de Bord</h1>
+                <a href="http://localhost:8000" class="admin-btn-back" target="_blank">
+                    <span>←</span>
+                    <span>Retour au site</span>
+                </a>
+            </header>
+
+            <div class="admin-content">
+                <!-- Stats Cards -->
+                <div class="admin-stats-grid">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-header">
+                            <div>
+                                <div class="admin-stat-value">24</div>
+                                <div class="admin-stat-label">Commandes du mois</div>
+                                <div class="admin-stat-trend positive">↗ +12.5%</div>
+                            </div>
+                            <div class="admin-stat-icon teal">📦</div>
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-header">
+                            <div>
+                                <div class="admin-stat-value">2,847€</div>
+                                <div class="admin-stat-label">Chiffre d'affaires</div>
+                                <div class="admin-stat-trend positive">↗ +8.3%</div>
+                            </div>
+                            <div class="admin-stat-icon gold">💰</div>
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-header">
+                            <div>
+                                <div class="admin-stat-value">156</div>
+                                <div class="admin-stat-label">Produits en stock</div>
+                                <div class="admin-stat-trend positive">↗ +5.2%</div>
+                            </div>
+                            <div class="admin-stat-icon brown">🕯️</div>
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-header">
+                            <div>
+                                <div class="admin-stat-value">89</div>
+                                <div class="admin-stat-label">Clients actifs</div>
+                                <div class="admin-stat-trend positive">↗ +15.8%</div>
+                            </div>
+                            <div class="admin-stat-icon beige">👥</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Grid -->
+                <div class="admin-dashboard-grid">
+                    <!-- Colonne Gauche -->
+                    <div class="admin-dashboard-left">
+                        <!-- Dernières Commandes -->
+                        <div class="admin-section-card">
+                            <div class="admin-section-header">
+                                <h3 class="admin-section-title">Commandes Récentes</h3>
+                                <a href="#" class="admin-link-small">Voir tout →</a>
+                            </div>
+                            <div class="admin-orders-list">
+                                <div class="admin-order-item">
+                                    <div class="admin-order-info">
+                                        <div class="admin-order-id">#CMD-2024-048</div>
+                                        <div class="admin-order-customer">Marie Dubois</div>
+                                    </div>
+                                    <div class="admin-order-details">
+                                        <div class="admin-order-amount">89,50€</div>
+                                        <span class="admin-badge info">Nouvelle</span>
+                                    </div>
+                                </div>
+
+                                <div class="admin-order-item">
+                                    <div class="admin-order-info">
+                                        <div class="admin-order-id">#CMD-2024-047</div>
+                                        <div class="admin-order-customer">Sophie Martin</div>
+                                    </div>
+                                    <div class="admin-order-details">
+                                        <div class="admin-order-amount">124,50€</div>
+                                        <span class="admin-badge warning">En cours</span>
+                                    </div>
+                                </div>
+
+                                <div class="admin-order-item">
+                                    <div class="admin-order-info">
+                                        <div class="admin-order-id">#CMD-2024-046</div>
+                                        <div class="admin-order-customer">Lucas Bernard</div>
+                                    </div>
+                                    <div class="admin-order-details">
+                                        <div class="admin-order-amount">67,00€</div>
+                                        <span class="admin-badge success">Livrée</span>
+                                    </div>
+                                </div>
+
+                                <div class="admin-order-item">
+                                    <div class="admin-order-info">
+                                        <div class="admin-order-id">#CMD-2024-045</div>
+                                        <div class="admin-order-customer">Emma Petit</div>
+                                    </div>
+                                    <div class="admin-order-details">
+                                        <div class="admin-order-amount">156,20€</div>
+                                        <span class="admin-badge warning">En préparation</span>
+                                    </div>
+                                </div>
+
+                                <div class="admin-order-item">
+                                    <div class="admin-order-info">
+                                        <div class="admin-order-id">#CMD-2024-044</div>
+                                        <div class="admin-order-customer">Thomas Leroy</div>
+                                    </div>
+                                    <div class="admin-order-details">
+                                        <div class="admin-order-amount">98,75€</div>
+                                        <span class="admin-badge success">Livrée</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produits Populaires -->
+                        <div class="admin-section-card">
+                            <div class="admin-section-header">
+                                <h3 class="admin-section-title">Produits les Plus Vendus</h3>
+                                <a href="#" class="admin-link-small">Voir tout →</a>
+                            </div>
+                            <div class="admin-products-list">
+                                <div class="admin-product-item">
+                                    <div class="admin-product-info">
+                                        <div class="admin-product-emoji">🕯️</div>
+                                        <div>
+                                            <div class="admin-product-name">Bougie Lavande Premium</div>
+                                            <div class="admin-product-sales">47 ventes · 31% du CA</div>
+                                        </div>
+                                    </div>
+                                    <div class="admin-product-revenue">1,457€</div>
+                                </div>
+
+                                <div class="admin-product-item">
+                                    <div class="admin-product-info">
+                                        <div class="admin-product-emoji">🎁</div>
+                                        <div>
+                                            <div class="admin-product-name">Coffret Découverte</div>
+                                            <div class="admin-product-sales">38 ventes · 27% du CA</div>
+                                        </div>
+                                    </div>
+                                    <div class="admin-product-revenue">1,254€</div>
+                                </div>
+
+                                <div class="admin-product-item">
+                                    <div class="admin-product-info">
+                                        <div class="admin-product-emoji">🌸</div>
+                                        <div>
+                                            <div class="admin-product-name">Bougie Vanille Intense</div>
+                                            <div class="admin-product-sales">32 ventes · 19% du CA</div>
+                                        </div>
+                                    </div>
+                                    <div class="admin-product-revenue">896€</div>
+                                </div>
+
+                                <div class="admin-product-item">
+                                    <div class="admin-product-info">
+                                        <div class="admin-product-emoji">🍊</div>
+                                        <div>
+                                            <div class="admin-product-name">Bougie Fleur d'Oranger</div>
+                                            <div class="admin-product-sales">28 ventes · 17% du CA</div>
+                                        </div>
+                                    </div>
+                                    <div class="admin-product-revenue">784€</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Graphique des Ventes -->
+                        <div class="admin-section-card">
+                            <div class="admin-section-header">
+                                <h3 class="admin-section-title">Évolution des Ventes</h3>
+                                <select class="admin-select-period" id="chartPeriod">
+                                    <option value="7">7 derniers jours</option>
+                                    <option value="30" selected>30 derniers jours</option>
+                                    <option value="90">3 derniers mois</option>
+                                </select>
+                            </div>
+                            <canvas id="salesChart" style="max-height: 320px;"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Colonne Droite -->
+                    <div class="admin-dashboard-right">
+                        <!-- Graphique Répartition -->
+                        <div class="admin-section-card">
+                            <div class="admin-section-header">
+                                <h3 class="admin-section-title">Répartition par Catégorie</h3>
+                            </div>
+                            <div style="display: flex; gap: 40px; align-items: center; justify-content: center;">
+                                <canvas id="categoryChart" style="max-width: 220px; max-height: 220px;"></canvas>
+                                <div class="admin-category-legend" id="categoryLegend"></div>
+                            </div>
+                        </div>
+
+                        <!-- Messages récents -->
+                        <div class="admin-section-card">
+                            <div class="admin-section-header">
+                                <h3 class="admin-section-title">Messages Clients</h3>
+                                <a href="#" class="admin-link-small">Voir tout →</a>
+                            </div>
+                            <div class="admin-messages-list">
+                                <div class="admin-message-item">
+                                    <div class="admin-message-avatar">SM</div>
+                                    <div class="admin-message-content">
+                                        <div class="admin-message-header">
+                                            <strong>Sophie Martin</strong>
+                                            <span class="admin-message-time">Il y a 2h</span>
+                                        </div>
+                                        <p class="admin-message-text">Bonjour, est-ce que vous proposez des bougies personnalisées pour un événement ?</p>
+                                    </div>
+                                </div>
+
+                                <div class="admin-message-item">
+                                    <div class="admin-message-avatar">JD</div>
+                                    <div class="admin-message-content">
+                                        <div class="admin-message-header">
+                                            <strong>Jean Dupont</strong>
+                                            <span class="admin-message-time">Il y a 5h</span>
+                                        </div>
+                                        <p class="admin-message-text">Merci beaucoup pour la livraison rapide ! Les bougies sont absolument magnifiques.</p>
+                                    </div>
+                                </div>
+
+                                <div class="admin-message-item">
+                                    <div class="admin-message-avatar">ML</div>
+                                    <div class="admin-message-content">
+                                        <div class="admin-message-header">
+                                            <strong>Marie Lambert</strong>
+                                            <span class="admin-message-time">Hier</span>
+                                        </div>
+                                        <p class="admin-message-text">Question sur les délais de livraison pour les commandes de Noël.</p>
+                                    </div>
+                                </div>
+
+                                <div class="admin-message-item">
+                                    <div class="admin-message-avatar">PD</div>
+                                    <div class="admin-message-content">
+                                        <div class="admin-message-header">
+                                            <strong>Pierre Durand</strong>
+                                            <span class="admin-message-time">Il y a 2 jours</span>
+                                        </div>
+                                        <p class="admin-message-text">Est-ce possible d'avoir un coffret cadeau avec plusieurs parfums différents ?</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Login Form Handler
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminDashboard').classList.add('active');
+            setTimeout(initCharts, 100);
+        });
+
+        // Logout Function
+        function logoutAdmin() {
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('adminDashboard').classList.remove('active');
+        }
+
+        // Initialize Charts avec design sophistiqué
+        function initCharts() {
+            // Données des ventes
+            const salesData = {
+                labels: ['1 Nov', '5 Nov', '10 Nov', '15 Nov', '20 Nov', '25 Nov', '30 Nov'],
+                datasets: [{
+                    label: 'Ventes (€)',
+                    data: [320, 450, 380, 520, 480, 620, 580],
+                    borderColor: '#2C5F5D',
+                    backgroundColor: 'rgba(44, 95, 93, 0.08)',
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: '#2C5F5D',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 3,
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    pointHoverBorderWidth: 4
+                }]
+            };
+
+            const salesCtx = document.getElementById('salesChart').getContext('2d');
+            new Chart(salesCtx, {
+                type: 'line',
+                data: salesData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.95)',
+                            padding: 16,
+                            cornerRadius: 12,
+                            titleFont: { size: 15, weight: 'bold', family: 'Inter' },
+                            bodyFont: { size: 14, family: 'Inter' },
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Ventes: ' + context.parsed.y + '€';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) { return value + '€'; },
+                                color: '#78716C',
+                                font: { size: 13, weight: '500' }
+                            },
+                            grid: { color: '#F5F5F4', drawBorder: false }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#78716C',
+                                font: { size: 13, weight: '500' }
+                            },
+                            grid: { display: false, drawBorder: false }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+
+            // Graphique catégories avec design sophistiqué
+            const categoryData = {
+                labels: ['Bougies Parfumées', 'Bougies Décoratives', 'Coffrets Cadeaux', 'Accessoires'],
+                datasets: [{
+                    data: [45, 25, 20, 10],
+                    backgroundColor: [
+                        '#2C5F5D',
+                        '#CDA365',
+                        '#5E5240',
+                        '#D4C5A9'
+                    ],
+                    borderWidth: 4,
+                    borderColor: '#fff',
+                    hoverOffset: 10
+                }]
+            };
+
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: categoryData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.95)',
+                            padding: 16,
+                            cornerRadius: 12,
+                            displayColors: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.parsed + '%';
+                                }
+                            }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+
+            // Créer légende personnalisée sophistiquée
+            const legendHtml = categoryData.labels.map((label, index) => {
+                const color = categoryData.datasets[0].backgroundColor[index];
+                const value = categoryData.datasets[0].data[index];
+                return `
+                    <div class="admin-legend-item">
+                        <div class="admin-legend-color" style="background: ${color};"></div>
+                        <span class="admin-legend-label">${label}</span>
+                        <span class="admin-legend-value">${value}%</span>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('categoryLegend').innerHTML = legendHtml;
+
+            // Changement de période
+            document.getElementById('chartPeriod').addEventListener('change', function(e) {
+                console.log('Période changée:', e.target.value);
+            });
+        }
+    </script>
+</body>
+</html>

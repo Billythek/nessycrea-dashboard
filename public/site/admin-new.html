@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - NessyCrea</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --admin-sidebar-width: 280px;
+            --admin-header-height: 70px;
+            --admin-beige: #D4C5A9;
+            --admin-beige-light: #EADFC7;
+            --admin-brown: #5E5240;
+            --admin-teal: #2C5F5D;
+            --admin-cream: #FAF8F3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--admin-cream);
+            overflow-x: hidden;
+        }
+
+        /* =================
+           LOGIN PAGE
+        ================= */
+        .admin-login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--admin-beige) 0%, var(--admin-beige-light) 100%);
+            padding: 20px;
+        }
+
+        .admin-login-container {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(94, 82, 64, 0.15);
+            max-width: 450px;
+            width: 100%;
+            padding: 48px;
+        }
+
+        .admin-login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .admin-login-logo {
+            font-size: 56px;
+            margin-bottom: 16px;
+        }
+
+        .admin-login-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--admin-brown);
+            margin-bottom: 8px;
+        }
+
+        .admin-login-subtitle {
+            color: #8B7355;
+            font-size: 15px;
+        }
+
+        .admin-form-group {
+            margin-bottom: 24px;
+        }
+
+        .admin-form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--admin-brown);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .admin-form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(212, 197, 169, 0.3);
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .admin-form-input:focus {
+            outline: none;
+            border-color: var(--admin-teal);
+            box-shadow: 0 0 0 3px rgba(44, 95, 93, 0.1);
+        }
+
+        .admin-btn-login {
+            width: 100%;
+            padding: 14px;
+            background: var(--admin-teal);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .admin-btn-login:hover {
+            background: #1f4a48;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(44, 95, 93, 0.3);
+        }
+
+        .admin-credentials-box {
+            margin-top: 32px;
+            padding: 20px;
+            background: var(--admin-cream);
+            border-radius: 12px;
+            border-left: 4px solid var(--admin-beige);
+        }
+
+        .admin-credentials-title {
+            font-weight: 600;
+            color: var(--admin-brown);
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .admin-credentials-item {
+            color: #8B7355;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        /* =================
+           DASHBOARD LAYOUT
+        ================= */
+        .admin-dashboard {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .admin-dashboard.active {
+            display: flex;
+        }
+
+        /* Sidebar */
+        .admin-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--admin-sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, var(--admin-brown) 0%, #4a3f32 100%);
+            padding: 32px 24px;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .admin-sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-sidebar-logo-icon {
+            font-size: 32px;
+        }
+
+        .admin-sidebar-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .admin-nav {
+            list-style: none;
+        }
+
+        .admin-nav-item {
+            margin-bottom: 8px;
+        }
+
+        .admin-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .admin-nav-link:hover,
+        .admin-nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .admin-nav-icon {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .admin-sidebar-footer {
+            margin-top: auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-user-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .admin-user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--admin-beige);
+            color: var(--admin-brown);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .admin-user-info {
+            flex: 1;
+        }
+
+        .admin-user-name {
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .admin-user-email {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+        }
+
+        .admin-btn-logout {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .admin-btn-logout:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main Content */
+        .admin-main {
+            margin-left: var(--admin-sidebar-width);
+            min-height: 100vh;
+            background: var(--admin-cream);
+        }
+
+        .admin-header {
+            background: white;
+            height: var(--admin-header-height);
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 12px rgba(94, 82, 64, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--admin-brown);
+        }
+
+        .admin-header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .admin-btn-back {
+            padding: 10px 20px;
+            background: var(--admin-beige);
+            color: var(--admin-brown);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .admin-btn-back:hover {
+            background: var(--admin-beige-light);
+            transform: translateY(-2px);
+        }
+
+        .admin-content {
+            padding: 32px;
+        }
+
+        /* Stats Cards */
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .admin-stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(94, 82, 64, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .admin-stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(94, 82, 64, 0.12);
+        }
+
+        .admin-stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+
+        .admin-stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .admin-stat-icon.teal {
+            background: rgba(44, 95, 93, 0.1);
+        }
+
+        .admin-stat-icon.beige {
+            background: rgba(212, 197, 169, 0.2);
+        }
+
+        .admin-stat-icon.brown {
+            background: rgba(94, 82, 64, 0.1);
+        }
+
+        .admin-stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--admin-brown);
+            margin-bottom: 4px;
+        }
+
+        .admin-stat-label {
+            color: #8B7355;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Dashboard Iframe */
+        .admin-dashboard-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(94, 82, 64, 0.08);
+            overflow: hidden;
+            height: calc(100vh - var(--admin-header-height) - 200px);
+            min-height: 600px;
+        }
+
+        .admin-dashboard-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            :root {
+                --admin-sidebar-width: 80px;
+            }
+
+            .admin-sidebar-logo-text,
+            .admin-nav-text,
+            .admin-user-info,
+            .admin-btn-logout span {
+                display: none;
+            }
+
+            .admin-sidebar {
+                padding: 24px 16px;
+            }
+
+            .admin-nav-link {
+                justify-content: center;
+                padding: 14px;
+            }
+
+            .admin-user-card {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --admin-sidebar-width: 0px;
+            }
+
+            .admin-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .admin-sidebar.open {
+                transform: translateX(0);
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .admin-stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div class="admin-login-page" id="loginPage">
+        <div class="admin-login-container">
+            <div class="admin-login-header">
+                <div class="admin-login-logo">🕯️</div>
+                <h1 class="admin-login-title">Dashboard Admin</h1>
+                <p class="admin-login-subtitle">Bienvenue sur le panneau d'administration NessyCrea</p>
+            </div>
+
+            <form id="adminLoginForm">
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="adminEmail">Email</label>
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        class="admin-form-input"
+                        placeholder="admin@nessycrea.fr"
+                        value="admin@nessycrea.fr"
+                        required>
+                </div>
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="adminPassword">Mot de passe</label>
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        class="admin-form-input"
+                        placeholder="••••••••"
+                        value="admin123"
+                        required>
+                </div>
+
+                <button type="submit" class="admin-btn-login">
+                    Se connecter au Dashboard
+                </button>
+            </form>
+
+            <div class="admin-credentials-box">
+                <div class="admin-credentials-title">🔐 Identifiants de démonstration</div>
+                <div class="admin-credentials-item"><strong>Email:</strong> admin@nessycrea.fr</div>
+                <div class="admin-credentials-item"><strong>Mot de passe:</strong> admin123</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="admin-dashboard" id="adminDashboard">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-logo">
+                <span class="admin-sidebar-logo-icon">🕯️</span>
+                <span class="admin-sidebar-logo-text">NessyCrea</span>
+            </div>
+
+            <nav>
+                <ul class="admin-nav">
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link active">
+                            <span class="admin-nav-icon">📊</span>
+                            <span class="admin-nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">🛍️</span>
+                            <span class="admin-nav-text">Produits</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">📦</span>
+                            <span class="admin-nav-text">Commandes</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">👥</span>
+                            <span class="admin-nav-text">Clients</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">📧</span>
+                            <span class="admin-nav-text">Messages</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#" class="admin-nav-link">
+                            <span class="admin-nav-icon">⚙️</span>
+                            <span class="admin-nav-text">Paramètres</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <div class="admin-user-card">
+                    <div class="admin-user-avatar">NC</div>
+                    <div class="admin-user-info">
+                        <div class="admin-user-name">Admin</div>
+                        <div class="admin-user-email">admin@nessycrea.fr</div>
+                    </div>
+                </div>
+                <button class="admin-btn-logout" onclick="logoutAdmin()">
+                    <span>🚪</span>
+                    <span>Déconnexion</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1 class="admin-header-title">Dashboard Administration</h1>
+                <div class="admin-header-actions">
+                    <a href="index.html" class="admin-btn-back">
+                        <span>←</span>
+                        <span>Retour au site</span>
+                    </a>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Stats Cards -->
+                <div class="admin-stats-grid">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-header">
+                            <div>
+                                <div class="admin-stat-value">24</div>
+                                <div class="admin-stat-label">Commandes</div>
+                            </div>
+                            <div class="admin-stat-icon teal">📦</div>
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-header">
+                            <div>
+                                <div class="admin-stat-value">42</div>
+                                <div class="admin-stat-label">Produits</div>
+                            </div>
+                            <div class="admin-stat-icon beige">🛍️</div>
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-header">
+                            <div>
+                                <div class="admin-stat-value">156</div>
+                                <div class="admin-stat-label">Clients</div>
+                            </div>
+                            <div class="admin-stat-icon brown">👥</div>
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-header">
+                            <div>
+                                <div class="admin-stat-value">2.4k€</div>
+                                <div class="admin-stat-label">Revenu</div>
+                            </div>
+                            <div class="admin-stat-icon teal">💰</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Iframe -->
+                <div class="admin-dashboard-section">
+                    <iframe
+                        src="https://nessycrea-dashboard-wvap.vercel.app/dashboard"
+                        class="admin-dashboard-iframe"
+                        title="Dashboard NessyCrea"
+                        allow="clipboard-read; clipboard-write"
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Login Form Handler
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+
+            // Simple validation (in production, this should be server-side)
+            if (email === 'admin@nessycrea.fr' && password === 'admin123') {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('adminDashboard').classList.add('active');
+
+                // Store login state
+                sessionStorage.setItem('adminLoggedIn', 'true');
+            } else {
+                alert('Identifiants incorrects!');
+            }
+        });
+
+        // Logout Function
+        function logoutAdmin() {
+            sessionStorage.removeItem('adminLoggedIn');
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('adminDashboard').classList.remove('active');
+        }
+
+        // Check if already logged in
+        if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminDashboard').classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - NessyCrea</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">🕯️</span>
+                    <span class="logo-text">NessyCrea</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="boutique.html">Boutique</a></li>
+                    <li><a href="a-propos.html">À propos</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="admin.html" class="nav-admin">Admin</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="panier-btn">🛒 <span class="cart-count">0</span></button>
+                    <button class="hamburger-menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu Mobile -->
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="boutique.html">Boutique</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contactez-nous</h1>
+            <p>Une question ? Un projet personnalisé ? Parlons-en !</p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section contact-section">
+        <div class="container">
+            <div class="contact-layout">
+                <!-- FORMULAIRE -->
+                <div class="contact-form-container">
+                    <h2>Envoyez-nous un message</h2>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name">Nom complet *</label>
+                            <input type="text" id="contact-name" name="name" required placeholder="Votre nom">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">Email *</label>
+                            <input type="email" id="contact-email" name="email" required placeholder="votre@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-phone">Téléphone</label>
+                            <input type="tel" id="contact-phone" name="phone" placeholder="06 12 34 56 78">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-subject">Sujet *</label>
+                            <select id="contact-subject" name="subject" required>
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="commande">Question sur une commande</option>
+                                <option value="personnalisation">Bougie personnalisée</option>
+                                <option value="mariage">Événement / Mariage</option>
+                                <option value="autre">Autre demande</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Message *</label>
+                            <textarea id="contact-message" name="message" rows="6" required placeholder="Décrivez votre projet ou votre demande..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                    </form>
+                </div>
+
+                <!-- INFOS CONTACT -->
+                <div class="contact-info">
+                    <div class="contact-info-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <p>contact@nessycrea.fr</p>
+                        <p class="contact-note">Réponse sous 24h</p>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-icon">📞</div>
+                        <h3>Téléphone</h3>
+                        <p>01 23 45 67 89</p>
+                        <p class="contact-note">Lun-Ven : 9h-18h</p>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-icon">📍</div>
+                        <h3>Adresse</h3>
+                        <p>123 Rue de la Créativité</p>
+                        <p>75001 Paris, France</p>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-icon">⏰</div>
+                        <h3>Horaires</h3>
+                        <p>Lun-Ven : 9h00 - 18h00</p>
+                        <p>Sam : 10h00 - 16h00</p>
+                        <p class="contact-note">Dimanche fermé</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAP -->
+            <div class="map-container">
+                <h2 class="map-title">Où nous trouver</h2>
+                <div class="map-embed">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937595!2d2.292292615674398!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sEiffel%20Tower!5e0!3m2!1sen!2sfr!4v1234567890123!5m2!1sen!2sfr"
+                        width="100%"
+                        height="450"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="section faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Questions Fréquentes</h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>🕒 Quels sont vos délais de livraison ?</h3>
+                    <p>2-3 jours ouvrés en France métropolitaine. Expédition sous 24h pour les commandes passées avant 14h.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>🎨 Puis-je personnaliser ma bougie ?</h3>
+                    <p>Absolument ! Couleurs, parfums, messages gravés, tout est personnalisable. Contactez-nous pour discuter de votre projet.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>💰 Quels moyens de paiement acceptez-vous ?</h3>
+                    <p>Carte bancaire, PayPal, virement et paiement en plusieurs fois disponible à partir de 100€.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>🌿 Vos bougies sont-elles vraiment naturelles ?</h3>
+                    <p>Oui ! Cire de soja 100% végétale, mèches en coton, parfums sans CMR. Éco-responsables et vegan.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>💍 Faites-vous des commandes pour mariages ?</h3>
+                    <p>Oui ! Nous créons des bougies personnalisées pour mariages, anniversaires, événements d'entreprise. Devis sur mesure.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>🔄 Quelle est votre politique de retour ?</h3>
+                    <p>14 jours de rétractation. Produits non utilisés uniquement. Retour gratuit en France métropolitaine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">NessyCrea</h3>
+                    <p class="footer-text">Bougies artisanales premium</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="a-propos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact</h4>
+                    <ul class="footer-links">
+                        <li>📧 contact@nessycrea.fr</li>
+                        <li>📞 01 23 45 67 89</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NessyCrea. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DRAWER PANIER -->
+    <div class="cart-drawer">
+        <div class="cart-header">
+            <h3>Mon Panier</h3>
+            <button class="close-cart">×</button>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total-container">
+                <span>Total:</span>
+                <span class="cart-total">0.00€</span>
+            </div>
+            <button class="btn btn-primary btn-checkout">Commander</button>
+            <button class="btn btn-outline close-cart">Continuer les achats</button>
+        </div>
+    </div>
+
+    <div class="cart-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

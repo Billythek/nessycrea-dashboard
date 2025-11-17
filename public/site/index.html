@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NessyCrea • Bougies artisanales</title>
+  <meta name="description" content="NessyCrea - Bougies artisanales luxueuses, naturelles et respectueuses. Découvrez nos 8 créations uniques faites main à Paris.">
+  <link rel="stylesheet" href="/site/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+  <!-- HEADER / NAVIGATION -->
+  <header class="header" id="header">
+    <div class="navbar-container container">
+      <!-- Left: Logo + Menu -->
+      <div class="navbar-left">
+        <button class="nav__hamburger" id="nav-hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <a href="#accueil" class="logo">
+          <img src="Capture-d-ecran-2025-11-07-100733.jpg" alt="NessyCrea Logo" class="logo-img" loading="eager" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+          <span class="logo-text" style="display:none;">NessyCrea</span>
+        </a>
+        <!-- Desktop menu -->
+        <nav class="nav nav-desktop" id="main-nav">
+          <ul class="nav__list">
+            <li><a href="#accueil" class="nav__link active">Accueil</a></li>
+            <li><a href="#boutique" class="nav__link">Boutique</a></li>
+            <li><a href="#about" class="nav__link">À propos</a></li>
+            <li><a href="#contact" class="nav__link">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <!-- Right: Cart + Admin -->
+      <div class="navbar-right">
+        <button class="cart-icon-btn" id="cart-btn" aria-label="Panier">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h7.72a2 2 0 0 0 2-1.61l1.38-7.39H6"></path>
+          </svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+        <a href="/dashboard" class="btn-admin">Accès Admin</a>
+      </div>
+      <!-- Mobile menu popover -->
+      <div class="mobile-menu-popover hidden" id="mobile-menu">
+        <a href="#accueil" class="mobile-menu-link">Accueil</a>
+        <a href="#boutique" class="mobile-menu-link">Boutique</a>
+        <a href="#about" class="mobile-menu-link">À propos</a>
+        <a href="#contact" class="mobile-menu-link">Contact</a>
+        <a href="#admin" class="mobile-menu-link">Accès Admin</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CART DRAWER -->
+  <div class="cart-drawer-backdrop hidden" id="cart-backdrop"></div>
+  <div class="cart-drawer hidden" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Panier (<span id="cart-count">0</span> article<span id="cart-plural">s</span>)</h3>
+      <button class="cart-close-btn" id="cart-close-btn" aria-label="Fermer le panier">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="cart-drawer-body" id="cart-items">
+      <div class="cart-empty">
+        <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="margin: 0 auto 16px; opacity: 0.3;">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h7.72a2 2 0 0 0 2-1.61l1.38-7.39H6"></path>
+        </svg>
+        <p>Votre panier est vide</p>
+      </div>
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total">
+        <span>TOTAL</span>
+        <span class="cart-total-price" id="cart-total">0.00 €</span>
+      </div>
+      <button class="btn btn--secondary" id="continue-shopping">Continuer les achats</button>
+      <button class="btn btn--primary" id="checkout-btn">Commander</button>
+    </div>
+  </div>
+
+  <!-- SECTIONS PRINCIPALES -->
+  <main>
+    <!-- ACCUEIL -->
+    <section id="accueil" class="section section-home">
+      <div class="hero">
+        <div class="hero-bg" style="background-image: url('https://user-gen-media-assets.s3.amazonaws.com/seedream_images/4c9478cb-4d35-42bc-9953-c20958c8d0f0.png'); background-size: cover; background-position: center;"></div>
+        <div class="hero-content flex-col items-center justify-center">
+          <h1>NessyCrea - Créations Artisanales</h1>
+          <p class="hero-subtitle">Bougies 100% faites main, naturelles et durables</p>
+          <a href="#boutique" class="btn btn--primary btn--lg cta-hero">Découvrir la collection</a>
+        </div>
+      </div>
+      <section class="section-vedettes container">
+        <h3 class="section-title">Nos Produits Vedettes</h3>
+        <p style="text-align:center;color:var(--nc-brown);margin-top:-10px;margin-bottom:24px;font-size:1.05em;">Découvrez nos bougies les plus appréciées</p>
+        <div class="vedettes-grid flex gap-16">
+          <!-- Cards vedettes insérées via JS -->
+        </div>
+      </section>
+
+      <!-- Section Nos Valeurs - Design Simple et Élégant -->
+      <section class="valeurs-section-final">
+        <div class="container">
+          <h3 class="section-title">Nos Valeurs</h3>
+          <p class="valeurs-intro">Des engagements forts qui guident chaque création</p>
+
+          <div class="valeurs-grid-final">
+            <!-- Card 1: Artisanat -->
+            <div class="valeur-card-final">
+              <div class="valeur-image-final">
+                <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=85" alt="Artisanat main" loading="lazy">
+              </div>
+              <div class="valeur-content-wrapper">
+                <div class="valeur-icon-final">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
+                    <line x1="16" y1="8" x2="2" y2="22"></line>
+                    <line x1="17.5" y1="15" x2="9" y2="15"></line>
+                  </svg>
+                </div>
+                <h4 class="valeur-title-final">Artisanat Français</h4>
+                <p class="valeur-text-final">Chaque bougie est façonnée à la main dans notre atelier parisien, avec passion et savoir-faire traditionnel.</p>
+              </div>
+            </div>
+
+            <!-- Card 2: Naturel -->
+            <div class="valeur-card-final">
+              <div class="valeur-image-final">
+                <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=85" alt="Ingrédients naturels" loading="lazy">
+              </div>
+              <div class="valeur-content-wrapper">
+                <div class="valeur-icon-final">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    <path d="M2 12h20"></path>
+                  </svg>
+                </div>
+                <h4 class="valeur-title-final">100% Naturel</h4>
+                <p class="valeur-text-final">Cires végétales de soja, parfums sans CMR et ingrédients naturels soigneusement sélectionnés.</p>
+              </div>
+            </div>
+
+            <!-- Card 3: Éco-Responsable -->
+            <div class="valeur-card-final">
+              <div class="valeur-image-final">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=85" alt="Packaging écologique" loading="lazy">
+              </div>
+              <div class="valeur-content-wrapper">
+                <div class="valeur-icon-final">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="m9 12 2 2 4-4"></path>
+                  </svg>
+                </div>
+                <h4 class="valeur-title-final">Éco-Responsable</h4>
+                <p class="valeur-text-final">Emballages recyclables, production locale et engagement environnemental à chaque étape.</p>
+              </div>
+            </div>
+
+            <!-- Card 4: Excellence -->
+            <div class="valeur-card-final">
+              <div class="valeur-image-final">
+                <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=85" alt="Bougie premium" loading="lazy">
+              </div>
+              <div class="valeur-content-wrapper">
+                <div class="valeur-icon-final">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <h4 class="valeur-title-final">Excellence Premium</h4>
+                <p class="valeur-text-final">Une exigence de qualité supérieure pour des bougies qui subliment votre intérieur.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="valeurs-cta-final">
+            <a href="#boutique" class="btn btn--primary btn--lg">Découvrir la collection</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-testimonials container">
+        <h3 class="section-title">Témoignages Clients</h3>
+        <p style="text-align:center;color:var(--nc-brown);margin-top:-10px;margin-bottom:24px;font-size:1.05em;">L'avis de ceux qui ont adopté NessyCrea</p>
+        <div class="testimonials-grid flex gap-16">
+          <!-- Témoignages insérés via JS -->
+        </div>
+      </section>
+    </section>
+
+    <!-- BOUTIQUE -->
+    <section id="boutique" class="section section-boutique">
+      <div class="container">
+        <h2 class="section-title">Notre Collection de Bougies</h2>
+        <div class="boutique-filters flex gap-16">
+          <div class="filter-group">
+            <label for="filter-type">Type</label>
+            <select id="filter-type" class="form-control">
+              <option value="">Tous</option>
+              <option value="Luxe">Luxe</option>
+              <option value="Relaxation">Relaxation</option>
+              <option value="Gourmand">Gourmand</option>
+              <option value="Naturel">Naturel</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-price">Prix</label>
+            <select id="filter-price" class="form-control">
+              <option value="">Tous</option>
+              <option value="low">Moins de 25€</option>
+              <option value="mid">25€ à 30€</option>
+              <option value="high">Plus de 30€</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="filter-size">Taille</label>
+            <select id="filter-size" class="form-control">
+              <option value="">Toutes</option>
+              <option value="petit">Petit (90-120g)</option>
+              <option value="moyen">Moyen (140-180g)</option>
+              <option value="grand">Grand (200-300g)</option>
+            </select>
+          </div>
+        </div>
+        <div class="products-grid" id="products-grid">
+          <!-- Bougies affichées via JS -->
+        </div>
+      </div>
+      <!-- Modal détails produit -->
+      <div class="modal-bg hidden" id="modal-bg"></div>
+      <div class="modal hidden" id="product-modal">
+        <div class="modal-content" id="modal-content">
+          <!-- Les détails du produit s'affichent ici -->
+        </div>
+        <button class="btn-close-modal" id="modal-close" aria-label="Fermer">
+          <svg class="close-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span>Fermer</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section id="about" class="section about-section-new">
+      <div class="container">
+        <!-- Header -->
+        <h3 class="section-title">Notre Histoire</h3>
+        <p class="about-intro">Une passion devenue artisanat d'excellence</p>
+
+        <!-- Histoire avec image -->
+        <div class="about-story-grid">
+          <div class="about-story-content">
+            <h4 class="about-story-title">La naissance de NessyCrea</h4>
+            <p class="about-story-text">NessyCrea est née en 2020 d'une passion pour les bougies artisanales et le désir de créer des pièces uniques. Chaque création allie savoir-faire traditionnel français et design contemporain.</p>
+            <p class="about-story-text">Dans notre atelier parisien, nous façonnons chaque bougie à la main avec des matières nobles et éthiques. L'objectif : créer des moments de bien-être et transformer chaque espace en un lieu chaleureux et apaisant.</p>
+            <div class="about-stats">
+              <div class="about-stat-item">
+                <span class="stat-number-new">2020</span>
+                <span class="stat-label-new">Année de création</span>
+              </div>
+              <div class="about-stat-item">
+                <span class="stat-number-new">100%</span>
+                <span class="stat-label-new">Fait main à Paris</span>
+              </div>
+              <div class="about-stat-item">
+                <span class="stat-number-new">40h+</span>
+                <span class="stat-label-new">Durée de combustion</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-story-image">
+            <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=85" alt="Atelier de fabrication de bougies" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Processus artisanal -->
+        <div class="about-process-new">
+          <h4 class="about-subtitle-new">Notre Processus Artisanal</h4>
+          <div class="process-grid-new">
+            <div class="process-card-new">
+              <div class="process-image-new">
+                <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800&q=85" alt="Conception de bougies" loading="lazy">
+              </div>
+              <div class="process-content-wrapper">
+                <div class="process-icon-new">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                  </svg>
+                </div>
+                <h5 class="process-title-new">1. Conception</h5>
+                <p class="process-text-new">Élaboration de formules uniques et choix de design élégants pour chaque collection.</p>
+              </div>
+            </div>
+
+            <div class="process-card-new">
+              <div class="process-image-new">
+                <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&q=85" alt="Sélection ingrédients naturels" loading="lazy">
+              </div>
+              <div class="process-content-wrapper">
+                <div class="process-icon-new">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    <path d="M2 12h20"></path>
+                  </svg>
+                </div>
+                <h5 class="process-title-new">2. Sélection</h5>
+                <p class="process-text-new">Choix rigoureux de cires végétales bio et de parfums naturels sans substances nocives.</p>
+              </div>
+            </div>
+
+            <div class="process-card-new">
+              <div class="process-image-new">
+                <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=85" alt="Fabrication artisanale" loading="lazy">
+              </div>
+              <div class="process-content-wrapper">
+                <div class="process-icon-new">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m7.5 4.27 9 5.15"></path>
+                    <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+                    <path d="m3.3 7 8.7 5 8.7-5"></path>
+                    <path d="M12 22V12"></path>
+                  </svg>
+                </div>
+                <h5 class="process-title-new">3. Fabrication</h5>
+                <p class="process-text-new">Coulage manuel et minutieux, chaque bougie est contrôlée pour garantir la qualité.</p>
+              </div>
+            </div>
+
+            <div class="process-card-new">
+              <div class="process-image-new">
+                <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=85" alt="Finition et packaging" loading="lazy">
+              </div>
+              <div class="process-content-wrapper">
+                <div class="process-icon-new">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <h5 class="process-title-new">4. Finition</h5>
+                <p class="process-text-new">Soin du détail, étiquetage élégant et packaging raffiné pour sublimer chaque création.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Citation fondatrice - Design Split avec Image -->
+        <div class="about-quote-split">
+          <div class="quote-split-container">
+            <!-- Image côté gauche -->
+            <div class="quote-split-image">
+              <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=85" alt="Atelier NessyCrea" loading="lazy">
+              <div class="quote-image-overlay"></div>
+            </div>
+
+            <!-- Contenu côté droit -->
+            <div class="quote-split-content">
+              <div class="quote-split-inner">
+                <svg class="quote-icon-split" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                  <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                </svg>
+
+                <blockquote class="quote-text-split">
+                  "Mon objectif est de créer des bougies qui racontent une histoire, qui évoquent des émotions et qui transforment chaque espace en un lieu de bien-être et de sérénité."
+                </blockquote>
+
+                <div class="quote-author-split">
+                  <div class="quote-author-details">
+                    <cite class="quote-author-name-split">Vanessa</cite>
+                    <span class="quote-author-role">Fondatrice & Artisane</span>
+                    <span class="quote-author-location">NessyCrea Paris</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="about-cta-new">
+          <a href="#contact" class="btn btn--primary btn--lg">Contactez-nous</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-contact">
+      <div class="container contact-wrap flex-col">
+        <h2 class="section-title">Contactez-nous</h2>
+        <form id="contact-form" class="form">
+          <div class="form-group">
+            <label for="contact-name">Nom <span class="required">*</span></label>
+            <input type="text" name="name" id="contact-name" class="form-control" required>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email <span class="required">*</span></label>
+            <input type="email" name="email" id="contact-email" class="form-control" required>
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="contact-subject">Sujet</label>
+            <input type="text" name="subject" id="contact-subject" class="form-control">
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message <span class="required">*</span></label>
+            <textarea name="message" id="contact-message" class="form-control" rows="4" required></textarea>
+            <span class="form-error"></span>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg form-btn">Envoyer</button>
+          <div id="form-success" class="form-success hidden">
+            <span class="success-check">✓</span> Message envoyé avec succès !
+          </div>
+        </form>
+        <!-- Contact Info Cards -->
+        <div class="contact-info-wrapper">
+          <div class="contact-info-grid">
+            <div class="contact-info-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                  <path d="m2 7 10 6 10-6"></path>
+                </svg>
+              </div>
+              <div class="contact-info-content">
+                <h5>Email</h5>
+                <a href="mailto:contact@nessycrea.fr">contact@nessycrea.fr</a>
+                <span class="contact-label">Réponse sous 24h</span>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="contact-info-content">
+                <h5>Téléphone</h5>
+                <a href="tel:+33612345678">+33 6 12 34 56 78</a>
+                <span class="contact-label">Lun-Sam 10h-18h</span>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="contact-info-content">
+                <h5>Adresse</h5>
+                <p>123 Rue de la Créativité<br>75001 Paris, France</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="contact-info-content">
+                <h5>Horaires</h5>
+                <p>Lun-Ven: 10h-18h<br>Samedi: 14h-19h<br>Dimanche: Fermé</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ADMIN LOGIN -->
+    <section id="admin" class="section section-admin-login">
+      <div class="container">
+        <h2 class="section-title">Accès Administrateur</h2>
+        <div class="admin-login-wrap">
+          <form id="admin-login-form" class="form admin-form">
+            <div class="form-group">
+              <label for="admin-email">Email <span class="required">*</span></label>
+              <input type="email" name="email" id="admin-email" class="form-control" required placeholder="admin@nessycrea.fr">
+              <span class="form-error" id="admin-email-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="admin-password">Mot de passe <span class="required">*</span></label>
+              <input type="password" name="password" id="admin-password" class="form-control" required placeholder="Votre mot de passe">
+              <span class="form-error" id="admin-password-error"></span>
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg form-btn">Se connecter</button>
+            <div id="admin-login-error" class="form-error" style="text-align:center;margin-top:12px;display:none;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN DASHBOARD (Hidden by default) -->
+    <section id="admin-dashboard" class="section section-admin-dashboard hidden">
+      <div class="container">
+        <div class="admin-header flex justify-between items-center">
+          <h2 class="section-title" style="margin:0;">Tableau de Bord Administrateur</h2>
+          <button id="admin-logout" class="btn btn--secondary">Déconnexion</button>
+        </div>
+        <div class="admin-welcome">Bienvenue, Admin !</div>
+        
+        <div class="admin-tabs">
+          <button class="admin-tab-btn active" data-tab="stats">📈 Statistiques</button>
+          <button class="admin-tab-btn" data-tab="dashboard">📊 Tableau de Bord</button>
+          <button class="admin-tab-btn" data-tab="products">🛍️ Gestion Produits</button>
+          <button class="admin-tab-btn" data-tab="messages">💬 Messages</button>
+        </div>
+
+        <div class="admin-tab-content">
+          <!-- Stats Tab -->
+          <div class="admin-tab-panel active" data-panel="stats">
+            <h3>Statistiques du site</h3>
+            <div class="admin-stats-grid">
+              <div class="admin-stat-card">
+                <div class="stat-icon">🕯️</div>
+                <div class="stat-value">8</div>
+                <div class="stat-label">Produits</div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="stat-icon">💬</div>
+                <div class="stat-value" id="messages-count">0</div>
+                <div class="stat-label">Messages</div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-value">4.9</div>
+                <div class="stat-label">Note Moyenne</div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="stat-icon">✨</div>
+                <div class="stat-value">3</div>
+                <div class="stat-label">Témoignages</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashboard Tab -->
+          <div class="admin-tab-panel" data-panel="dashboard">
+            <div class="dashboard-header">
+              <h3>📊 Tableau de Bord NessyCrea</h3>
+              <p>Accédez à vos statistiques et données en temps réel</p>
+            </div>
+            <div class="dashboard-container">
+              <div class="dashboard-frame-wrap">
+                <iframe id="dashboard-iframe" src="https://nessycrea-dashboard-wvap.vercel.app/dashboard" frameborder="0" class="dashboard-iframe" loading="lazy" title="Dashboard NessyCrea" width="100%" height="800"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products Tab -->
+          <div class="admin-tab-panel" data-panel="products">
+            <h3>Liste des Produits</h3>
+            <div id="admin-products-list" class="admin-products-list"></div>
+          </div>
+
+          <!-- Messages Tab -->
+          <div class="admin-tab-panel" data-panel="messages">
+            <h3>Messages Reçus</h3>
+            <div id="admin-messages-list" class="admin-messages-list">
+              <p style="color:#6B5344;text-align:center;padding:20px;">Aucun message pour le moment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD (Kept for reference, but hidden from public) -->
+    <section id="dashboard" class="section section-dashboard hidden">
+      <div class="container">
+        <h2 class="section-title">Tableau de Bord</h2>
+        <div class="dashboard-frame-wrap">
+          <iframe id="dashboard-iframe" src="https://nessycrea-dashboard-wvap.vercel.app/dashboard" frameborder="0" class="dashboard-iframe" loading="lazy" title="Dashboard"
+            width="100%" height="600" onerror="document.getElementById('dashboard-frame-alt').classList.remove('hidden');"></iframe>
+          <div id="dashboard-frame-alt" class="hidden dashboard-alt">
+            <p>Le dashboard n'a pas pu être chargé. <a href="https://nessycrea-dashboard-wvap.vercel.app/dashboard" target="_blank">Accéder directement au dashboard</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <!-- Brand Section -->
+        <div class="footer-brand">
+          <h3>NessyCrea</h3>
+          <p>Bougies artisanales luxueuses, faites main avec passion à Paris. Découvrez nos créations uniques et naturelles.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram" class="footer-icon">📷</a>
+            <a href="#" aria-label="Facebook" class="footer-icon">🐦</a>
+            <a href="#" aria-label="Pinterest" class="footer-icon">💗</a>
+          </div>
+        </div>
+
+        <!-- Navigation Section -->
+        <div class="footer-section">
+          <h4>Navigation</h4>
+          <nav class="footer-nav">
+            <ul class="footer-menu">
+              <li><a href="#accueil">Accueil</a></li>
+              <li><a href="#boutique">Boutique</a></li>
+              <li><a href="#about">À propos</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <div class="footer-contact-quick">
+            <p>Email :<br><a href="mailto:contact@nessycrea.fr">contact@nessycrea.fr</a></p>
+            <p>Tél :<br><a href="tel:+33612345678">+33 6 12 34 56 78</a></p>
+            <p>Adresse :<br>123 Rue de la Créativité<br>75001 Paris</p>
+          </div>
+        </div>
+
+        <!-- Newsletter Section -->
+        <div class="footer-section">
+          <h4>Newsletter</h4>
+          <p style="color: rgba(245, 241, 237, 0.7); font-size: 1em; line-height: 1.6; margin-bottom: 16px;">Inscrivez-vous pour recevoir nos actualités et offres exclusives.</p>
+          <form class="footer-newsletter" onsubmit="event.preventDefault(); alert('Merci pour votre inscription!');">
+            <input type="email" placeholder="Votre email" required>
+            <button type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="copyright">
+          &copy; 2025 NessyCrea. Tous droits réservés.
+        </div>
+        <ul class="footer-legal">
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">CGV</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/site/script.js"></script>
+</body>
+</html>

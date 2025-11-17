@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique - Bougies Artisanales | NessyCrea</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">🕯️</span>
+                    <span class="logo-text">NessyCrea</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="boutique.html" class="active">Boutique</a></li>
+                    <li><a href="a-propos.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="admin.html" class="nav-admin">Admin</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="panier-btn">🛒 <span class="cart-count">0</span></button>
+                    <button class="hamburger-menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu Mobile -->
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="boutique.html">Boutique</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Boutique</h1>
+            <p>Découvrez notre collection complète de bougies artisanales</p>
+        </div>
+    </section>
+
+    <!-- BOUTIQUE -->
+    <section class="section shop-section">
+        <div class="container">
+            <div class="shop-layout">
+                <!-- FILTRES -->
+                <aside class="shop-filters">
+                    <h3>Filtres</h3>
+
+                    <!-- Type -->
+                    <div class="filter-group">
+                        <h4>Type</h4>
+                        <button class="filter-btn filter-type active" data-filter="all">Tous</button>
+                        <button class="filter-btn filter-type" data-filter="Gourmand">Gourmand</button>
+                        <button class="filter-btn filter-type" data-filter="Relaxation">Relaxation</button>
+                        <button class="filter-btn filter-type" data-filter="Naturel">Naturel</button>
+                        <button class="filter-btn filter-type" data-filter="Luxe">Luxe</button>
+                    </div>
+
+                    <!-- Prix -->
+                    <div class="filter-group">
+                        <h4>Prix</h4>
+                        <button class="filter-btn filter-price active" data-filter="all">Tous</button>
+                        <button class="filter-btn filter-price" data-filter="0-25">0€ - 25€</button>
+                        <button class="filter-btn filter-price" data-filter="25-30">25€ - 30€</button>
+                        <button class="filter-btn filter-price" data-filter="30+">30€+</button>
+                    </div>
+
+                    <!-- Taille -->
+                    <div class="filter-group">
+                        <h4>Taille</h4>
+                        <button class="filter-btn filter-size active" data-filter="all">Toutes</button>
+                        <button class="filter-btn filter-size" data-filter="petit">Petit</button>
+                        <button class="filter-btn filter-size" data-filter="moyen">Moyen</button>
+                        <button class="filter-btn filter-size" data-filter="grand">Grand</button>
+                    </div>
+                </aside>
+
+                <!-- GRILLE PRODUITS -->
+                <div class="shop-products">
+                    <div class="products-grid">
+
+                        <!-- Produit 1 -->
+                        <div class="product-card" data-product-id="1" data-type="Gourmand" data-price="24.99" data-size="grand">
+                            <div class="product-badge">⭐ Best Seller</div>
+                            <div class="product-image-container">
+                                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/5ff06277-c960-49ff-88c3-80023c260e0d.png" alt="Bougie Vanille Douce" class="product-image" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Bougie Vanille Douce</h3>
+                                <div class="product-rating">⭐⭐⭐⭐⭐ <span>(128 avis)</span></div>
+                                <p class="product-price">24.99€</p>
+                                <button class="btn btn-add-cart" onclick="addToCart('1', 'Bougie Vanille Douce', '24.99', 'https://user-gen-media-assets.s3.amazonaws.com/seedream_images/5ff06277-c960-49ff-88c3-80023c260e0d.png')">Ajouter au panier</button>
+                            </div>
+                        </div>
+
+                        <!-- Produit 2 -->
+                        <div class="product-card" data-product-id="2" data-type="Relaxation" data-price="26.99" data-size="moyen">
+                            <div class="product-image-container">
+                                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/993b049d-633d-48d0-8a2d-71d2ad01fe98.png" alt="Lavande Provence" class="product-image" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Lavande Provence</h3>
+                                <div class="product-rating">⭐⭐⭐⭐⭐ <span>(96 avis)</span></div>
+                                <p class="product-price">26.99€</p>
+                                <button class="btn btn-add-cart" onclick="addToCart('2', 'Lavande Provence', '26.99', 'https://user-gen-media-assets.s3.amazonaws.com/seedream_images/993b049d-633d-48d0-8a2d-71d2ad01fe98.png')">Ajouter au panier</button>
+                            </div>
+                        </div>
+
+                        <!-- Produit 3 -->
+                        <div class="product-card" data-product-id="3" data-type="Naturel" data-price="22.99" data-size="petit">
+                            <div class="product-image-container">
+                                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/3ac59884-6810-456c-9bd2-191aa9ea7368.png" alt="Eucalyptus Menthe" class="product-image" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Eucalyptus Menthe</h3>
+                                <div class="product-rating">⭐⭐⭐⭐ <span>(85 avis)</span></div>
+                                <p class="product-price">22.99€</p>
+                                <button class="btn btn-add-cart" onclick="addToCart('3', 'Eucalyptus Menthe', '22.99', 'https://user-gen-media-assets.s3.amazonaws.com/seedream_images/3ac59884-6810-456c-9bd2-191aa9ea7368.png')">Ajouter au panier</button>
+                            </div>
+                        </div>
+
+                        <!-- Produit 4 -->
+                        <div class="product-card" data-product-id="4" data-type="Luxe" data-price="34.99" data-size="grand">
+                            <div class="product-badge">💎 Premium</div>
+                            <div class="product-image-container">
+                                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/6fbd27a9-ef56-4d6b-9c08-e7b811d2454a.png" alt="Rose Luxe Premium" class="product-image" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Rose Luxe Premium</h3>
+                                <div class="product-rating">⭐⭐⭐⭐⭐ <span>(152 avis)</span></div>
+                                <p class="product-price">34.99€</p>
+                                <button class="btn btn-add-cart" onclick="addToCart('4', 'Rose Luxe Premium', '34.99', 'https://user-gen-media-assets.s3.amazonaws.com/seedream_images/6fbd27a9-ef56-4d6b-9c08-e7b811d2454a.png')">Ajouter au panier</button>
+                            </div>
+                        </div>
+
+                        <!-- Produit 5 -->
+                        <div class="product-card" data-product-id="5" data-type="Luxe" data-price="29.99" data-size="moyen">
+                            <div class="product-image-container">
+                                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/19d07d07-c6e5-4ac2-b8be-45eeb976a10c.png" alt="Ambre Boisé" class="product-image" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Ambre Boisé</h3>
+                                <div class="product-rating">⭐⭐⭐⭐⭐ <span>(112 avis)</span></div>
+                                <p class="product-price">29.99€</p>
+                                <button class="btn btn-add-cart" onclick="addToCart('5', 'Ambre Boisé', '29.99', 'https://user-gen-media-assets.s3.amazonaws.com/seedream_images/19d07d07-c6e5-4ac2-b8be-45eeb976a10c.png')">Ajouter au panier</button>
+                            </div>
+                        </div>
+
+                        <!-- Produit 6 -->
+                        <div class="product-card" data-product-id="6" data-type="Naturel" data-price="21.99" data-size="petit">
+                            <div class="product-image-container">
+                                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/efdb02f6-d0ec-4715-adfa-c0bebc12804b.png" alt="Citron Énergisant" class="product-image" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Citron Énergisant</h3>
+                                <div class="product-rating">⭐⭐⭐⭐ <span>(67 avis)</span></div>
+                                <p class="product-price">21.99€</p>
+                                <button class="btn btn-add-cart" onclick="addToCart('6', 'Citron Énergisant', '21.99', 'https://user-gen-media-assets.s3.amazonaws.com/seedream_images/efdb02f6-d0ec-4715-adfa-c0bebc12804b.png')">Ajouter au panier</button>
+                            </div>
+                        </div>
+
+                        <!-- Produit 7 -->
+                        <div class="product-card" data-product-id="7" data-type="Gourmand" data-price="25.99" data-size="moyen">
+                            <div class="product-image-container">
+                                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/e72d4d44-95c9-40da-ad26-96f38b9a5d70.png" alt="Cacao Apaisement" class="product-image" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Cacao Apaisement</h3>
+                                <div class="product-rating">⭐⭐⭐⭐⭐ <span>(94 avis)</span></div>
+                                <p class="product-price">25.99€</p>
+                                <button class="btn btn-add-cart" onclick="addToCart('7', 'Cacao Apaisement', '25.99', 'https://user-gen-media-assets.s3.amazonaws.com/seedream_images/e72d4d44-95c9-40da-ad26-96f38b9a5d70.png')">Ajouter au panier</button>
+                            </div>
+                        </div>
+
+                        <!-- Produit 8 -->
+                        <div class="product-card" data-product-id="8" data-type="Relaxation" data-price="27.99" data-size="grand">
+                            <div class="product-image-container">
+                                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/d62bf794-ab3e-487f-803d-4f2829015a66.png" alt="Rose & Violette" class="product-image" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">Rose & Violette</h3>
+                                <div class="product-rating">⭐⭐⭐⭐⭐ <span>(89 avis)</span></div>
+                                <p class="product-price">27.99€</p>
+                                <button class="btn btn-add-cart" onclick="addToCart('8', 'Rose & Violette', '27.99', 'https://user-gen-media-assets.s3.amazonaws.com/seedream_images/d62bf794-ab3e-487f-803d-4f2829015a66.png')">Ajouter au panier</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">NessyCrea</h3>
+                    <p class="footer-text">Bougies artisanales premium</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="a-propos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact</h4>
+                    <ul class="footer-links">
+                        <li>📧 contact@nessycrea.fr</li>
+                        <li>📞 01 23 45 67 89</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NessyCrea. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DRAWER PANIER -->
+    <div class="cart-drawer">
+        <div class="cart-header">
+            <h3>Mon Panier</h3>
+            <button class="close-cart">×</button>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total-container">
+                <span>Total:</span>
+                <span class="cart-total">0.00€</span>
+            </div>
+            <button class="btn btn-primary btn-checkout">Commander</button>
+            <button class="btn btn-outline close-cart">Continuer les achats</button>
+        </div>
+    </div>
+
+    <div class="cart-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

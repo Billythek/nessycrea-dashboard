@@ -1,0 +1,5 @@
+export { NumberTicker } from "./NumberTicker"
+export { FadeInText } from "./FadeInText"
+export { HighlightText } from "./HighlightText"
+export { ShimmerButton } from "./ShimmerButton"
+export { default as AnimatedGradientBg } from "./animated-gradient-bg"

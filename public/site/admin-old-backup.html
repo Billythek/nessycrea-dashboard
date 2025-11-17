@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - NessyCrea</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Dashboard Fullscreen Mode */
+        .dashboard-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            background: white;
+        }
+
+        .dashboard-topbar {
+            background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .dashboard-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .dashboard-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .dashboard-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-back-site {
+            background: white;
+            color: var(--color-gold);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-back-site:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-logout-dashboard {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-logout-dashboard:hover {
+            background: white;
+            color: var(--color-gold);
+        }
+
+        .dashboard-iframe-container {
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: #f5f5f5;
+        }
+
+        .dashboard-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .admin-user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: white;
+        }
+
+        .admin-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            color: var(--color-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .admin-email {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-topbar {
+                padding: 0.75rem 1rem;
+            }
+
+            .dashboard-title {
+                display: none;
+            }
+
+            .admin-email {
+                display: none;
+            }
+
+            .btn-back-site span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR (Hidden when dashboard is active) -->
+    <nav class="navbar" id="main-navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">🕯️</span>
+                    <span class="logo-text">NessyCrea</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="boutique.html">Boutique</a></li>
+                    <li><a href="a-propos.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="admin.html" class="nav-admin active">Admin</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="panier-btn">🛒 <span class="cart-count">0</span></button>
+                    <button class="hamburger-menu"><span></span><span></span><span></span></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu Mobile -->
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="boutique.html">Boutique</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+    </div>
+
+    <!-- ADMIN SECTION -->
+    <section class="section admin-section" id="admin-login-section">
+        <div class="container">
+
+            <!-- LOGIN FORM -->
+            <div class="admin-login" id="admin-login">
+                <div class="admin-login-card">
+                    <div class="admin-login-header">
+                        <span class="logo-icon">🕯️</span>
+                        <h2>Connexion Admin</h2>
+                        <p>Accédez au panneau d'administration NessyCrea</p>
+                    </div>
+
+                    <form id="admin-login-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="admin-email">Email</label>
+                            <input type="email" id="admin-email" name="email" required placeholder="admin@nessycrea.fr" value="admin@nessycrea.fr">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="admin-password">Mot de passe</label>
+                            <input type="password" id="admin-password" name="password" required placeholder="••••••••" value="admin123">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Se connecter au Dashboard</button>
+                    </form>
+
+                    <div class="admin-credentials">
+                        <p><strong>🔐 Identifiants de démonstration:</strong></p>
+                        <p>Email: admin@nessycrea.fr</p>
+                        <p>Mot de passe: admin123</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DASHBOARD FULLSCREEN (Hidden by default) -->
+    <div class="dashboard-fullscreen" id="admin-dashboard" style="display: none;">
+        <div class="dashboard-topbar">
+            <div class="dashboard-topbar-left">
+                <a href="index.html" class="dashboard-logo">
+                    <span>🕯️</span>
+                    <span>NessyCrea</span>
+                </a>
+                <span class="dashboard-title">Dashboard Administration</span>
+            </div>
+            <div class="dashboard-actions">
+                <div class="admin-user-info">
+                    <div class="admin-avatar">NC</div>
+                    <span class="admin-email">admin@nessycrea.fr</span>
+                </div>
+                <a href="index.html" class="btn-back-site">
+                    <span>←</span>
+                    <span>Retour au site</span>
+                </a>
+                <button class="btn-logout-dashboard" onclick="logoutAdmin()">Déconnexion</button>
+            </div>
+        </div>
+        <div class="dashboard-iframe-container">
+            <iframe
+                src="https://nessycrea-dashboard-wvap.vercel.app/dashboard"
+                class="dashboard-iframe"
+                title="Dashboard NessyCrea"
+                allow="clipboard-read; clipboard-write"
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- FOOTER (Hidden when dashboard is active) -->
+    <footer class="footer" id="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">NessyCrea</h3>
+                    <p class="footer-text">Bougies artisanales premium</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="boutique.html">Boutique</a></li>
+                        <li><a href="a-propos.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact</h4>
+                    <ul class="footer-links">
+                        <li>📧 contact@nessycrea.fr</li>
+                        <li>📞 01 23 45 67 89</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NessyCrea. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DRAWER PANIER -->
+    <div class="cart-drawer">
+        <div class="cart-header">
+            <h3>Mon Panier</h3>
+            <button class="close-cart">×</button>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total-container">
+                <span>Total:</span>
+                <span class="cart-total">0.00€</span>
+            </div>
+            <button class="btn btn-primary btn-checkout">Commander</button>
+            <button class="btn btn-outline close-cart">Continuer les achats</button>
+        </div>
+    </div>
+
+    <div class="cart-overlay"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if already logged in
+        if (localStorage.getItem('nessycrea_admin') === 'true') {
+            showDashboard();
+        }
+
+        // Login form handler
+        const loginForm = document.getElementById('admin-login-form');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const email = document.getElementById('admin-email').value;
+                const password = document.getElementById('admin-password').value;
+
+                // Simple authentication (demo)
+                if (email === 'admin@nessycrea.fr' && password === 'admin123') {
+                    localStorage.setItem('nessycrea_admin', 'true');
+                    showDashboard();
+                } else {
+                    alert('❌ Identifiants incorrects');
+                }
+            });
+        }
+
+        function showDashboard() {
+            // Hide login section, navbar and footer
+            document.getElementById('admin-login-section').style.display = 'none';
+            document.getElementById('main-navbar').style.display = 'none';
+            document.getElementById('main-footer').style.display = 'none';
+
+            // Show dashboard
+            document.getElementById('admin-dashboard').style.display = 'block';
+
+            // Hide mobile nav if open
+            document.querySelector('.mobile-nav').classList.remove('open');
+        }
+
+        function logoutAdmin() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                localStorage.removeItem('nessycrea_admin');
+                window.location.href = 'admin.html';
+            }
+        }
+    </script>
+</body>
+</html>

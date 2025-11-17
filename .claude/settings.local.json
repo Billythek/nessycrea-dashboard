@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(frontend-design:frontend-design)",
+      "Bash(npm install:*)",
+      "Bash(node --version:*)",
+      "Bash(/usr/local/bin/node:*)",
+      "Bash(/opt/homebrew/bin/node --version)",
+      "Bash(~/.nvm/versions/node/*/bin/node)",
+      "Bash(export PATH=\"/usr/local/bin:/opt/homebrew/bin:$HOME/.nvm/versions/node/v22.21.1/bin:$PATH\")",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)",
+      "Bash(gh auth status:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nRefonte complète NessyCrea - React + Tailwind\n\n- Migration de vanilla HTML/CSS/JS vers React 18 + Vite\n- Design système personnalisé avec Tailwind (couleurs ambre/caramel)\n- Animations avancées avec Framer Motion\n- Logo animé avec flamme\n- Icônes SVG personnalisées (bougie, flamme, etc.)\n- Panier avec Context API + localStorage\n- Transitions de page fluides\n- Barre de progression au scroll\n- Fond animé interactif (orbes, étincelles, glow curseur)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
