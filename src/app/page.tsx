@@ -1,22 +1,6 @@
-'use client'
-
-import { useEffect } from 'react'
+import { redirect } from 'next/navigation'
 
 export default function Home() {
-  useEffect(() => {
-    // Redirect to site HTML
-    window.location.href = '/site/index.html'
-  }, [])
-
-  return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100vh',
-      fontFamily: 'system-ui'
-    }}>
-      <p>Chargement...</p>
-    </div>
-  )
+  // Redirect directly to the dashboard
+  redirect('/dashboard')
 }
